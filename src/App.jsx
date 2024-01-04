@@ -9,14 +9,14 @@ const App = () => {
   return (
     <main className="app">
       <Navbar/>
+      <Header/>
       <About/>
+      <Projects/>
+      <Skills/>
+      <Favourites/>
+      <Testimonials/>
       <Blogs/>
       <Contact/>
-      <Favourites/>
-      <Header/>
-      <Projects/>
-      <Testimonials/>
-      <Skills/>
     </main>
   )
 }
