@@ -1,0 +1,17 @@
+{/* Render the second half of navLinks */}
+            {/* <ul className='flex-1 flex justify-center items-center gap-16 max-lg:hidden'> */}
+            {secondHalf.map((link, index) => (
+                <ul 
+                    key={index} 
+                    className={`flex-1 flex justify-center items-center gap-16 ${index === secondHalf.length - 1 ? 'rounded-full bg-red-500 px-2' : ''}`}
+                >
+                    <li key={link.text}>
+                        <a
+                            href={link.href}
+                            className='nav-links'
+                        >
+                            {link.text}
+                        </a>
+                    </li>
+                </ul>
+            ))}

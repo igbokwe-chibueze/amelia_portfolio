@@ -1,3 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;0,9..40,1000;1,9..40,100;1,9..40,200;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700;1,9..40,800;1,9..40,900;1,9..40,1000&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .app {
+    @apply bg-primary-color font-baseFont;
+  }
+}
+
+@layer components {
+  .navbar {
+    @apply fixed z-40 flex justify-between items-center w-full shadow-lg backdrop-blur-xl bg-white/30;
+  }
+
+  .hamburgerBtn{
+    @apply block p-1 text-gray-500 rounded 
+        hover:text-tea-green hover:bg-caribbean-current hover:rounded-lg 
+        transition-all duration-300 ease-linear 
+        focus:bg-caribbean-current focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-tea-green focus:text-tea-green
+  }
+
+  .menu-links {
+    @apply leading-normal text-lg text-caribbean-current py-2 px-8 mt-1 hover:bg-caribbean-current hover:text-tea-green;
+  }
+
+  .navbar-container {
+    @apply flex justify-between items-center py-4 px-8 w-full;
+  }
+
+  .nav-links {
+    @apply leading-normal text-lg text-caribbean-current;
+  }
+
+  .nav-links-hover {
+    @apply h-px inline-block w-0 bg-midnight-green absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease-in-out duration-300;
+  }
+
+}
+
+@layer utilities {
+  .progress-bar {
+    @apply h-0.5 bg-chartreuse-color origin-bottom-left
+  }
+}
