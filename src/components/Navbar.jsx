@@ -114,7 +114,7 @@ const Navbar = () => {
                     <li key={link.index}>
                         <a
                             href={link.href}
-                            className={`nav-links relative group ${index === secondHalf.length - 1 ? 'rounded-full bg-chartreuse-color px-2' : ''}`}  //styles the last link of the second batch of links.
+                            className={`nav-links relative group ${index === secondHalf.length - 1 ? 'rounded-full bg-chartreuse-color px-8 py-1' : ''}`}  //styles the last link of the second batch of links.
                         >
                             {link.text}
                             <span className='nav-links-hover'>
