@@ -38,10 +38,19 @@
     @apply h-px inline-block w-0 bg-midnight-green absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease-in-out duration-300;
   }
 
+
 }
 
 @layer utilities {
   .progress-bar {
     @apply h-0.5 bg-chartreuse-color origin-bottom-left
+  }
+
+  .parallax {
+    @apply flex overflow-hidden tracking-tight leading-3 whitespace-nowrap flex-nowrap
+  }
+
+  .scroller {
+    @apply flex font-semibold uppercase text-6xl whitespace-nowrap flex-nowrap
   }
 }
