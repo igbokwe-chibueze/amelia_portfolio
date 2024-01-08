@@ -2,8 +2,9 @@
 
 const Skills = () => {
   return (
-    <section 
-      className="w-full h-screen px-2 pt-20 pb-5 bg-indigo-500"
+    <section
+    id='skills'
+      className="w-full h-screen px-2 pt-20 bg-indigo-500"
     >
       <div>
         Skills

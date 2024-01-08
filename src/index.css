@@ -6,13 +6,17 @@
 
 @layer base {
   .app {
-    @apply bg-primary-color font-baseFont;
+    @apply bg-tea-green font-baseFont;
   }
 }
 
 @layer components {
   .navbar {
-    @apply fixed z-40 flex justify-between items-center w-full shadow-lg backdrop-blur-xl bg-white/30;
+    @apply fixed top-0 right-0 left-0 z-40 w-full;
+  }
+
+  .navbar-container{
+    @apply flex justify-between items-center;
   }
 
   .hamburgerBtn{
@@ -23,10 +27,14 @@
   }
 
   .menu-links {
-    @apply leading-normal text-lg text-caribbean-current py-2 px-8 mt-1 hover:bg-caribbean-current hover:text-tea-green;
+    @apply leading-normal text-lg text-caribbean-current;
   }
 
-  .navbar-container {
+  .menu-links-div {
+    @apply flex justify-end p-2 pr-7 mt-2 rounded-lg hover:bg-caribbean-current hover:text-tea-green;
+  }
+
+  .navbar-items {
     @apply flex justify-between items-center py-4 px-8 w-full;
   }
 
@@ -36,6 +44,10 @@
 
   .nav-links-hover {
     @apply h-px inline-block w-0 bg-midnight-green absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease-in-out duration-300;
+  }
+
+  .hearder-icon-circles {
+    @apply rounded-full p-3 bg-chartreuse-color border-4 border-tea-green shadow-md shadow-tea-green/40
   }
 
 
@@ -51,6 +63,6 @@
   }
 
   .scroller {
-    @apply flex font-semibold uppercase text-6xl whitespace-nowrap flex-nowrap
+    @apply flex font-semibold uppercase text-4xl tablet:text-6xl whitespace-nowrap flex-nowrap
   }
 }

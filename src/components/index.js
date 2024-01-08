@@ -1,3 +1,4 @@
+import ContactBtn from "./ContactBtn";
 import CustomBtn from "./CustomBtn";
 import Menu from "./Menu";
 import Navbar from "./Navbar";
@@ -7,6 +8,7 @@ import ThemeSwitcher from "./ThemeSwitcher";
 
 
 export {
+    ContactBtn,
     Navbar,
     Menu,
     CustomBtn,
