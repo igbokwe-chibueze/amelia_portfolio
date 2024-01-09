@@ -59,7 +59,7 @@
   }
 
   .parallax {
-    @apply flex overflow-hidden tracking-tight leading-3 whitespace-nowrap flex-nowrap
+    @apply flex overflow-hidden tracking-tight leading-none whitespace-nowrap flex-nowrap
   }
 
   .scroller {

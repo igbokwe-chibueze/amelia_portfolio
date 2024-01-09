@@ -2,9 +2,9 @@ import { images } from '../constants';
 
 const Header = () => {
   return (
-    <section id='header' className="w-full min-h-screen px-2 pt-16">
-      <div className="bg-midnight-green rounded-lg">
-        <div className="bg-caribbean-current text-tea-green rounded-t-lg p-4">
+    <section id='header' className="w-full min-h-screen pt-16 px-2">
+      <div className="bg-midnight-green rounded-lg mb-8">
+        <div className="bg-caribbean-current text-tea-green rounded-t-lg p-3 tablet:p-4">
           <div className="parallax">
             <div className="scroller">
               <span className="flex overflow-hidden tracking-tight leading-none whitespace-nowrap flex-nowrap">
@@ -14,52 +14,52 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 mx-4">
+        <div className="grid grid-cols-1 tablet:grid-cols-3 gap-4 mt-4 mx-4">
           {/* First Column */}
-          <div className="md:col-span-1 mb-4 md:mb-0">
-            <div className="p-4 bg-tea-green rounded-2xl flex flex-row w-full shadow-md text-5xl items-center">
-              <span>👋🏿</span>
-              <div className="ml-5">
-                <p className="text-sm text-left text-gray-500 leading-6">Greetings! I am</p>
-                <h1 className="text-2xl font-extrabold text-center text-black capitalize">Amelia</h1>
-              </div>
-            </div>
-
-            <div className="p-4 bg-tea-green rounded-2xl flex flex-row w-full shadow-md items-center">
-              <p className="text-sm text-left text-gray-500 leading-6 w-full uppercase">
-                Graphics designer and a UI/UX designer
+          <div className="tablet:col-span-1">
+            <div className="flex flex-col gap-5 text-tea-green">
+              <h4 className=" text-lg font-normal">👋🏿 Greetings! I am</h4>
+              <h1 className="text-6xl font-bold">
+                Hi, I'm <span className="text-chartreuse-color capitalize">Amelia Olufowobi</span>
+              </h1>
+              <h2 className="text-4xl font-bold">
+                a <span>UI Designer.</span>
+              </h2>
+              <p className="text-base leading-6 tracking-wide">
+                Designing Dreams, Managing Realities:
+                Where UI/UX Wizardry, Graphic Alchemy, and Project Prowess Unite
               </p>
             </div>
           </div>
 
           {/* Second Column */}
-          <div className="md:col-span-1">
+          <div className="tablet:col-span-1">
             <div className="flex justify-center items-center">
               <img
                 src={images.profile}
                 alt="fallback_image"
-                width={360}
-                height={360}
-                className="object-contain z-10 -mt-14 p-0"
+                className="object-contain z-10 tablet:-mt-14 p-0 w-[350px] h-[350px] tablet:w-[450px] tablet:h-[450px]"
               />
             </div>
           </div>
 
           {/* Third Column */}
           <div className="tablet:col-span-1">
-            <div className='flex tablet:flex-col tablet:space-y-12'>
+            <div className='flex tablet:flex-col justify-between items-center 
+              tablet:items-start tablet:space-y-12 pb-4 tablet:pb-0 -mt-2 tablet:-mt-0'
+            >
               {/* First Circle */}
-              <div className="w-24 h-24 -ml-14 hearder-icon-circles">
+              <div className="w-16 h-16 tablet:w-24 tablet:h-24 -mt-9 tablet:-mt-0 tablet:-ml-14 hearder-icon-circles">
                 <img src={images.flutter} alt="Flutter" className="object-cover w-full h-full" />
               </div>
 
               {/* Second Circle */}
-              <div className="w-28 h-28 ml-10 hearder-icon-circles">
+              <div className="w-20 h-20 tablet:w-28 tablet:h-28 tablet:ml-10 hearder-icon-circles">
                 <img src={images.redux} alt="Redux" className="object-cover w-full h-full" />
               </div>
 
               {/* Third Circle */}
-              <div className="w-14 h-14 -ml-8 hearder-icon-circles">
+              <div className="w-16 h-16 tablet:w-14 tablet:h-14 -mt-10 tablet:-mt-0 tablet:-ml-8 hearder-icon-circles">
                 <img src={images.sass} alt="Sass" className="object-cover w-full h-full" />
               </div>
             </div>
@@ -69,7 +69,7 @@ const Header = () => {
         <div className="flex justify-center items-center mt-4">
           <button
             type="button"
-            className="bg-chartreuse-color p-2 rounded-full w-80  h-16 z-20 -mt-12 -rotate-12"
+            className="bg-chartreuse-color p-2 rounded-full w-52 h-14 tablet:w-80 tablet:h-16 z-20 -mt-4 tablet:-mt-12 -rotate-12"
           >
             Download CV
           </button>

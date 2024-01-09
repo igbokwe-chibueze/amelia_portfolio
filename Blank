@@ -1,5 +1,16 @@
-{[images.flutter, images.redux, images.sass].map((circle, index) => (
-  <div className="w-28 h-28" key={`circle-${index}`}>
-    <img src={circle} alt="profile_bg" /> {/* Circle image */}
+{/* <div className="tablet:col-span-1 mb-4 tablet:mb-0 tablet:space-y-4">
+  <div className="p-2 tablet:p-4 flex flex-row w-full justify-center items-center">
+    <span className='text-2xl tablet:text-5xl'>👋🏿</span>
+    <div className="tablet:ml-5 space-y-2">
+      <p className="text-base text-left text-tea-green leading-6 font-medium">Greetings! I am</p>
+      <h1 className="text-xl tablet:text-4xl text-left font-extrabold text-chartreuse-color capitalize">Amelia Olufowobi,</h1>
+      <p className="text-base text-left text-tea-green leading-6 font-medium">An awesome UI/UX Designer.....</p>
+    </div>
   </div>
-))}
+
+  <div className="p-4 flex flex-row w-full items-center">
+    <p className="text-base text-left tracking-wide font-medium text-tea-green leading-normal w-full">
+      <span className='text-chartreuse-color'>Designing Dreams, Managing Realities:</span> Where UI/UX Wizardry, Graphic Alchemy, and Project Prowess Unite.
+    </p>
+  </div>
+</div> */}
