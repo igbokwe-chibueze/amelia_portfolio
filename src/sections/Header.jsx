@@ -1,4 +1,19 @@
 import { images } from '../constants';
+import { CustomBtn } from '../components';
+import { ArrowRightIcon } from '../constants/icons';
+import { motion } from 'framer-motion';
+
+
+const buttonVariants = {
+  hover: {
+    scale: 1.1,
+    transition: {
+      duration: 0.3,
+      repeat: Infinity,
+      repeatType: 'reverse'
+    }
+  }
+}
 
 const Header = () => {
   return (
@@ -18,7 +33,7 @@ const Header = () => {
           {/* First Column */}
           <div className="tablet:col-span-1">
             <div className="flex flex-col gap-5 text-tea-green">
-              <h4 className=" text-lg font-normal">👋🏿 Greetings! I am</h4>
+              <h4 className="text-lg font-normal">👋🏿 Greetings! I am</h4>
               <h1 className="text-6xl font-bold">
                 Hi, I'm <span className="text-chartreuse-color capitalize">Amelia Olufowobi</span>
               </h1>
@@ -59,7 +74,7 @@ const Header = () => {
               </div>
 
               {/* Third Circle */}
-              <div className="w-16 h-16 tablet:w-14 tablet:h-14 -mt-10 tablet:-mt-0 tablet:-ml-8 hearder-icon-circles">
+              <div className="w-16 h-16 tablet:w-20 tablet:h-20 -mt-10 tablet:-mt-0 tablet:-ml-8 hearder-icon-circles">
                 <img src={images.sass} alt="Sass" className="object-cover w-full h-full" />
               </div>
             </div>
@@ -67,12 +82,25 @@ const Header = () => {
         </div>
 
         <div className="flex justify-center items-center mt-4">
-          <button
+          <motion.button
             type="button"
-            className="bg-chartreuse-color p-2 rounded-full w-52 h-14 tablet:w-80 tablet:h-16 z-20 -mt-4 tablet:-mt-12 -rotate-12"
+            variants={buttonVariants}
+            whileHover="hover"
+            className="flex justify-center items-center bg-chartreuse-color gap-1 tablet:gap-4 p-2 rounded-full 
+            w-52 h-14 tablet:w-80 tablet:h-16 z-20 -mt-4 tablet:-mt-12 -rotate-12 hover:rotate-0"
           >
-            Download CV
-          </button>
+            <p className='text-caribbean-current text-lg tablet:text-2xl font-bold leading-none'>Download CV</p>
+            <ArrowRightIcon className={"w-14 h-12 text-chartreuse-color fill-midnight-green rotate-45"}/>
+          </motion.button>
+          {/* <CustomBtn
+            label="Download CV" 
+            backgroundColor={"bg-chartreuse-color"} 
+            borderColor={"border-1 border-gray-500"} 
+            textColor={"text-caribbean-current"}
+            onClick=""
+          >
+            <ArrowRightIcon className={"w-8 h-8 fill-white"}/>
+          </CustomBtn> */}
         </div>
       </div>
     </section>
