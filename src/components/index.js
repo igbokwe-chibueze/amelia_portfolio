@@ -2,6 +2,7 @@ import ContactBtn from "./ContactBtn";
 import CustomBtn from "./CustomBtn";
 import Menu from "./Menu";
 import Navbar from "./Navbar";
+import ParallaxText from "./ParallaxText";
 import ProgressBar from "./ProgressBar";
 import ThemeSwitcher from "./ThemeSwitcher";
 
@@ -13,6 +14,7 @@ export {
     Menu,
     CustomBtn,
     ThemeSwitcher,
-    ProgressBar
+    ProgressBar,
+    ParallaxText
 
 }
