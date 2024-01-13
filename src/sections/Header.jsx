@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { images } from '../constants';
 import { CustomBtn, ParallaxText } from '../components';
-import { ArrowRightIcon } from '../constants/icons';
+import { ArrowDownIcon } from '../constants/icons';
 import { motion } from 'framer-motion';
 import Typewriter from 'typewriter-effect';
 
@@ -19,6 +20,27 @@ const buttonVariants = {
 };
 
 // Variants for the scale animation
+const textSlideVariants = {
+  whileInView: {
+    // Animation effect for scale and opacity from 0 to 1
+    x: [-100, 0],
+    opacity: [0, 1],
+    // Animation transition properties
+    transition: {
+      duration: 1.2, // Animation duration in seconds
+      ease: 'easeInOut',
+    },
+  },
+};
+
+const textChildrenVarients = {
+  whileInView: {
+    x: [-100, 0],
+    opacity: [0, 1]
+  },
+}
+
+// Variants for the scale animation
 const scaleVariants = {
   whileInView: {
     // Animation effect for scale and opacity from 0 to 1
@@ -26,13 +48,67 @@ const scaleVariants = {
     opacity: [0, 1],
     // Animation transition properties
     transition: {
-      duration: 1, // Animation duration in seconds
+      duration: 1.5, // Animation duration in seconds
       ease: 'easeInOut', // Animation easing function
     },
   },
 };
 
+const hoverScaleVariants = {
+  rest: {
+    scale: 1,
+  },
+  hover: {
+    scale: 1.1,
+    transition: {
+      duration: 0.3,
+    },
+  },
+};
+
 const Header = () => {
+
+  const professionStrings = [
+    'UI/UX Designer...',
+    'Project Manager...',
+    'Graphics Designer...',
+    'Content Writer...'
+  ];
+
+  const [downloading, setDownloading] = useState(false);
+
+  // Function to handle the download button click
+  const handleDownloadClick = () => {
+    // Set the downloading state to true
+    setDownloading(true);
+
+    // Replace 'your-file-path.pdf' with the actual path of your PDF file
+    const pdfFilePath = '/src/assets/Amelia CV.pdf';
+
+    // Create a temporary link element
+    const link = document.createElement('a');
+
+    // Set the href attribute to the file path
+    link.href = pdfFilePath;
+
+    // Set the download attribute with the desired file name
+    link.download = pdfFilePath.substring(pdfFilePath.lastIndexOf('/') + 1);
+
+    // Append the link to the document
+    document.body.appendChild(link);
+
+    // Trigger a click on the link to start the download
+    link.click();
+
+    // Remove the link from the document
+    document.body.removeChild(link);
+
+    // Reset the downloading state after a short delay (adjust the delay as needed)
+    setTimeout(() => {
+      setDownloading(false);
+    }, 3000);
+  };
+
   return (
     <section id='header' className="w-full min-h-screen pt-16 px-2">
       <div className="bg-midnight-green rounded-lg mb-8">
@@ -44,34 +120,47 @@ const Header = () => {
           {/* First Column */}
           <div className="tablet:col-span-1">
             <motion.div
-              whileInView={{ x: [-100, 0], opacity: [0, 1] }} // Animation effect for horizontal sliding from left and opacity change from transparent to full
-              transition={{ duration: 1 }} // Animation transition properties
+              variants={textSlideVariants}
+              whileInView={textSlideVariants.whileInView}
               className="flex flex-col gap-5 text-tea-green"
             >
               <h4 className="text-lg font-normal">👋🏿 Greetings! I am</h4>
-              <h1 className="text-6xl font-bold">
-                Hi, I'm <span className="text-chartreuse-color capitalize">Amelia Olufowobi</span>
-              </h1>
-              <h2 className="text-2xl tablet:text-4xl font-bold">
-                <Typewriter
-                  options={{
-                    strings: [
-                      'a UI/UX Designer', 
-                      'a Project Manager',
-                      'a Graphics Designer'
-                    ],
-                    autoStart: true,
-                    loop: true,
-                    delay: 50, // Optional delay between strings
-                    pauseFor: 1000, // Optional pause after each string
-                    escapeHtml: false, // Allow HTML in strings
-                  }}
-                />
-              </h2>
-              <p className="text-base leading-6 tracking-wide">
-                Designing Dreams, Managing Realities:
-                Where UI/UX Wizardry, Graphic Alchemy, and Project Prowess Unite
-              </p>
+
+              <motion.div
+                variants={textChildrenVarients}
+                whileInView={textChildrenVarients.whileInView}
+                transition={{ delay:1, duration: 1 }}
+                className="flex flex-col gap-5"
+              >
+                <h1 className="text-6xl font-bold">
+                  Hi, I'm <span className="text-chartreuse-color capitalize">Amelia Olufowobi</span>
+                </h1>
+              </motion.div>
+
+              <motion.div
+                variants={textChildrenVarients}
+                whileInView={textChildrenVarients.whileInView}
+                transition={{ delay:1, duration: 1.4 }} 
+                className='flex flex-col gap-5'
+              >
+                <h2 className="flex space-x-2 text-2xl tablet:text-4xl font-bold">
+                  <span>a</span>
+                  <Typewriter
+                    options={{
+                      strings: professionStrings,
+                      autoStart: true,
+                      loop: true,
+                      delay: 50, // Optional delay between strings
+                      pauseFor: 1000, // Optional pause after each string
+                      escapeHtml: false, // Allow HTML in strings
+                    }}
+                  />
+                </h2>
+                <p className="text-base leading-6 tracking-wide">
+                  Designing Dreams, Managing Realities:
+                  Where UI/UX Wizardry, Graphic Alchemy, and Project Prowess Unite
+                </p>
+              </motion.div>
             </motion.div>
           </div>
 
@@ -79,7 +168,7 @@ const Header = () => {
           <div className="tablet:col-span-1">
             <motion.div
               whileInView={{ y: [100, 0], opacity: [0, 1] }} // Animation effect for horizontal sliding from left and opacity change from transparent to full
-              transition={{ duration: 1 }}
+              transition={{ duration: 1.5 }}
               className="flex justify-center items-center"
             >
               <img
@@ -99,44 +188,60 @@ const Header = () => {
               tablet:items-start tablet:space-y-12 pb-4 tablet:pb-0 -mt-2 tablet:-mt-0'
             >
               {/* First Circle */}
-              <div className="w-16 h-16 tablet:w-24 tablet:h-24 -mt-9 tablet:-mt-0 tablet:-ml-14 hearder-icon-circles">
+              <motion.div
+                variants={hoverScaleVariants}
+                whileHover={hoverScaleVariants.hover}
+                //The z-10 is just to prevent the circle from being behind the profile image, so i can hover over it.
+                className="w-16 h-16 tablet:w-24 tablet:h-24 -mt-9 tablet:-mt-0 tablet:-ml-14 hearder-icon-circles z-10"
+              >
                 <img src={images.flutter} alt="Flutter" className="object-cover w-full h-full" />
-              </div>
+              </motion.div>
 
               {/* Second Circle */}
-              <div className="w-20 h-20 tablet:w-28 tablet:h-28 tablet:ml-10 hearder-icon-circles">
+              <motion.div
+                variants={hoverScaleVariants}
+                whileHover={hoverScaleVariants.hover}
+                className="w-20 h-20 tablet:w-28 tablet:h-28 tablet:ml-10 hearder-icon-circles"
+              >
                 <img src={images.redux} alt="Redux" className="object-cover w-full h-full" />
-              </div>
+              </motion.div>
 
               {/* Third Circle */}
-              <div className="w-16 h-16 tablet:w-20 tablet:h-20 -mt-10 tablet:-mt-0 tablet:-ml-8 hearder-icon-circles">
+              <motion.div 
+                variants={hoverScaleVariants}
+                whileHover={hoverScaleVariants.hover}
+                className="w-16 h-16 tablet:w-20 tablet:h-20 -mt-10 tablet:-mt-0 tablet:-ml-8 hearder-icon-circles z-10"
+              >
                 <img src={images.sass} alt="Sass" className="object-cover w-full h-full" />
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
 
         <div className="flex justify-center items-center mt-4">
-          <motion.button
-            type="button"
+          <motion.div
             variants={buttonVariants}
-            whileHover="hover"
+            // Apply hover effect only when not downloading. I used rest when downloading or btn wont return to no rotation.
+            whileHover={!downloading ? buttonVariants.hover : 'rest'}
             initial="rest" // Optional: Set the initial state
-            className="flex justify-center items-center bg-chartreuse-color hover:bg-[#6BC800] gap-1 tablet:gap-4 p-2 rounded-full 
-            w-52 h-14 tablet:w-80 tablet:h-16 z-20 -mt-4 tablet:-mt-12 -rotate-12"
+            className='-mt-4 tablet:-mt-14 z-20'
           >
-            <p className='text-caribbean-current text-lg tablet:text-2xl font-bold leading-none'>Download CV</p>
-            <ArrowRightIcon className={"w-14 h-12 text-chartreuse-color fill-midnight-green rotate-45"}/>
-          </motion.button>
-          {/* <CustomBtn
-            label="Download CV" 
-            backgroundColor={"bg-chartreuse-color"} 
-            borderColor={"border-1 border-gray-500"} 
-            textColor={"text-caribbean-current"}
-            onClick=""
-          >
-            <ArrowRightIcon className={"w-8 h-8 fill-white"}/>
-          </CustomBtn> */}
+            <CustomBtn
+              classProps={`gap-4 px-8 py-2 ${downloading ? 'rotate-12' : ''}`}
+              label={downloading ? 'Downloading...' : 'Download CV'} 
+              backgroundColor={"bg-chartreuse-color"} 
+              borderColor={"border-1 border-midnight-green"} 
+              textColor={"text-midnight-green"}
+              onClick={handleDownloadClick}
+              disabled={downloading}  // Disable the button during download
+            >
+              <ArrowDownIcon 
+                className={`w-[50px] h-[50px] text-chartreuse-color fill-midnight-green 
+                ${!downloading ? '-rotate-45' : 'rotate-90 text-midnight-green fill-[#81926D] animate-bounce'}`}
+              />
+            </CustomBtn>
+
+          </motion.div>
         </div>
       </div>
     </section>

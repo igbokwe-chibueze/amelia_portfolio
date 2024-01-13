@@ -42,6 +42,10 @@
     @apply leading-normal text-lg text-caribbean-current;
   }
 
+  .nav-last-link {
+    @apply rounded-full bg-chartreuse-color hover:bg-[#6BC800] hover:scale-105 px-8 py-1
+  }
+
   .nav-links-hover {
     @apply h-px inline-block w-0 bg-midnight-green absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease-in-out duration-300;
   }

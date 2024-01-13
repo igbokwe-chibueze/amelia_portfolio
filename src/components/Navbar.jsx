@@ -150,7 +150,7 @@ const Navbar = () => {
                             offset={-90} // Scroll additional px ( like padding )Adjust based on your layout, Should be preferable zero
                             spy={true} //Make Link selected when scroll is at its targets position
                             activeClass="border-b border-midnight-green" //class applied when element is reached
-                            className={`cursor-pointer nav-links relative group ${index === secondHalf.length - 1 ? 'rounded-full bg-chartreuse-color hover:bg-[#6BC800] hover:scale-105 px-8 py-1' : ''}`}  //styles the last link of the second batch of links.
+                            className={`cursor-pointer nav-links relative group ${index === secondHalf.length - 1 ? 'nav-last-link' : ''}`}  //styles the last link of the second batch of links.
                         >
                             <div>{link.text}</div>
                             {/* Conditionally apply the nav-links-hover class */}
