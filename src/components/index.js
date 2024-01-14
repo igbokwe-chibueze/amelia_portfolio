@@ -4,6 +4,7 @@ import Menu from "./Menu";
 import Navbar from "./Navbar";
 import ParallaxText from "./ParallaxText";
 import ProgressBar from "./ProgressBar";
+import ServiceCard from "./ServiceCard";
 import ThemeSwitcher from "./ThemeSwitcher";
 
 
@@ -15,6 +16,7 @@ export {
     CustomBtn,
     ThemeSwitcher,
     ProgressBar,
-    ParallaxText
+    ParallaxText,
+    ServiceCard
 
 }

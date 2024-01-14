@@ -1,12 +1,63 @@
-<motion.button
-            type="button"
-            variants={buttonVariants}
-            whileHover="hover"
-            initial="rest" // Optional: Set the initial state
-            className="flex justify-center items-center bg-chartreuse-color hover:bg-[#6BC800] gap-1 tablet:gap-4 p-2 rounded-full 
-            w-52 h-14 tablet:w-80 tablet:h-16 z-20 -mt-4 tablet:-mt-12 -rotate-12"
-            onClick={handleDownloadClick}
-          >
-            <p className='text-caribbean-current text-lg tablet:text-2xl font-bold leading-none'>Download CV</p>
-            <ArrowRightIcon className={"w-14 h-12 text-chartreuse-color fill-midnight-green rotate-45"}/>
-          </motion.button>
+import { motion } from "framer-motion";
+import { ServiceCard } from "../components";
+import { images } from "../constants";
+
+
+
+// Assuming you have an array named servicesData
+const servicesData = [
+  {
+    image: images.about01,
+    title: 'Service 1',
+    description: 'React Native developers build mobile apps that bridge the gap between native performance and cross-platform flexibility.',
+  },
+  {
+    image: images.about02,
+    title: 'Service 2',
+    description: 'Frontend development brings digital visions to life, shaping the user experience with code and creativity.',
+  },
+  {
+    image: images.about03,
+    title: 'Service 3',
+    description: 'Backend developers orchestrate the digital symphony, powering applications and services hidden behind the curtains.',
+  },
+  {
+    image: images.about04,
+    title: 'Service 4',
+    description: 'Web designers craft digital experiences that blend aesthetics and functionality into pixel-perfect artistry.',
+  },
+];
+
+const About = () => {
+  return (
+    <section
+      id='about'
+      className="bg-white w-full min-h-screen"
+    >
+      {/* Heading for the About section */}
+      <h2 className="head-text">I Know that <span>Good Design</span> <br />means  <span>Good Business</span></h2>
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-1">
+
+        {/* Render a list of about profiles using 'map' function */}
+        <div className="flex justify-center items-start flex-wrap mt-8 md:flex md:col-span-4 bg-red-500">
+          {servicesData.map((service, index) => (
+            <ServiceCard key={service.title + index} {...service} />
+          ))}
+        </div>
+
+        {/* Right Column */}
+        <div className="mt-8 md:col-span-1">
+          <div className="mt-8 mr-8">
+            <div className="h-32 bg-midnight-green mb-4"></div>
+            <div className="h-16 bg-green-500"></div>
+
+          </div>
+        </div>
+      </div>
+
+
+    </section>
+  )
+}
+
+export default About

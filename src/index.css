@@ -5,8 +5,11 @@
 @tailwind utilities;
 
 @layer base {
-  .app {
+  /* .app {
     @apply bg-tea-green font-baseFont;
+  } */
+  .app {
+    @apply bg-[#edf2f8] font-baseFont;
   }
 }
 
@@ -54,6 +57,18 @@
     @apply rounded-full p-3 bg-chartreuse-color border-4 border-tea-green shadow-md shadow-tea-green/40
   }
 
+  .head-text {
+    @apply text-3xl tablet:text-5xl wide-desktop:text-7xl font-extrabold text-center text-caribbean-current capitalize
+  }
+
+  .title-text {
+    @apply text-base wide-desktop:text-3xl font-extrabold text-black
+  }
+
+  .p-text {
+    @apply text-sm text-left text-black leading-6 wide-desktop:text-3xl
+  }
+
 
 }
 
@@ -68,5 +83,9 @@
 
   .scroller {
     @apply flex font-semibold uppercase text-4xl tablet:text-6xl whitespace-nowrap flex-nowrap
+  }
+
+  .service-card {
+    @apply flex justify-start items-start flex-col w-52 wide-desktop:w-96 m-8 wide-desktop:my-8 wide-desktop:mx-16
   }
 }

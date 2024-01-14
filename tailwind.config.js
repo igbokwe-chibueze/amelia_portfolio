@@ -24,6 +24,9 @@ export default {
   
         'desktop': '1280px',
         // => @media (min-width: 1280px) { ... }
+
+        'wide-desktop': '2000px',
+        // => @media (min-width: 2000px) { ... }
       },
     },
   },
