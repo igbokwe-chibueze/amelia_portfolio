@@ -76,10 +76,12 @@ const Navbar = () => {
                 {/* Logo */}
                 <a href='/'>
                 <img
-                    src={images.logo}
+                    src={images.ameliaLogo}
                     alt='logo'
-                    width={90}
-                    height={20}
+                    //width={90}
+                    //height={20}
+                    width={120}
+                    height={60}
                 />
                 </a>
                 
@@ -126,11 +128,14 @@ const Navbar = () => {
                     initial= "hidden"
                     animate="visible"
                 >
-                    <img
-                        src={images.logo}
+                    <motion.img
+                        whileHover={{scale: 1.1}}
+                        src={images.ameliaLogo}
                         alt='logo'
-                        width={90}
-                        height={20}
+                        //width={90}
+                        //height={20}
+                        width={120}
+                        height={60}
                     />
                 </motion.a>
 

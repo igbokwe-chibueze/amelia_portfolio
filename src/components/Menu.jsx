@@ -128,7 +128,7 @@ const Menu = () => {
           exit="exit"
           className={`${
                 !menuToggle ? "hidden" : "block"  // Conditionally display the menu based on 'toggle' state.
-            } absolute right-0 top-0 mt-0 w-4/5 tablet:w-1/2 h-screen pt-2 pb-4 z-20 bg-chartreuse-color opacity-90 shadow-lg`}
+            } absolute right-0 top-0 mt-0 w-4/5 tablet:w-1/2 h-screen pt-2 pb-4 z-20 backdrop-blur-xl bg-caribbean-current/90 shadow-lg`}
         >
           <motion.div 
             className='flex-1 flex-col justify-center items-center w-5/6 mt-12 ml-16'
@@ -141,16 +141,16 @@ const Menu = () => {
                 duration={500}
                 offset={-90} // Scroll additional px ( like padding )Adjust based on your layout, Should be preferable zero
                 spy={true} //Make Link selected when scroll is at its targets position
-                activeClass="text-white" //class applied when element is reached
+                activeClass="text-chartreuse-color" //class applied when element is reached//class applied when element is reached
                 className="cursor-pointer menu-links"
                 onClick={() => setMenuToggle(false)}
               >
                 <motion.div 
                   variants={childrenVarients}
-                  whileHover={{scale: 1.1, originX: 1}}
+                  whileHover={{scale: 1.1}}
                   whileTap={{ scale: 0.7 }}
                   transition={{type: 'spring', stiffness: 90}}
-                  className={`menu-links-div ${index === navLinks.length - 1 ? 'bg-tea-green' : ''}`}
+                  className={`menu-links-div ${index === navLinks.length - 1 ? 'bg-gray-500' : ''}`}
                 >
                   {link.text}
                 </motion.div>
@@ -159,7 +159,7 @@ const Menu = () => {
           </motion.div>
           
           
-          <div className="mt-4 border-t border-caribbean-current ">
+          <div className="mt-4 border-t border-chartreuse-color">
             <motion.div
                 variants={childrenVarients}
                 className="flex-col flex justify-end items-end py-2 pr-8"

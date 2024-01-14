@@ -75,6 +75,12 @@ const Header = () => {
     'Content Writer...'
   ];
 
+  const salutationStrings = [
+    'Greetings!', 'E kúsẹ́!', 'Ndewo!', 'Salamai!', 'السلام (As-salam)!', 'Salamu!',
+    'Greetings!', '你好 (Nǐ hǎo)!', 'Saludos!', 'नमस्ते (Namaste)!', 'Saudações!', 'Grüße!',
+    'Greetings!', 'こんにちは (Konnichiwa)!', '안녕하세요 (Annyeonghaseyo)!', 'Selamlar!', 'Привет (Privet)',
+  ];
+
   const [downloading, setDownloading] = useState(false);
 
   // Function to handle the download button click
@@ -124,7 +130,20 @@ const Header = () => {
               whileInView={textSlideVariants.whileInView}
               className="flex flex-col gap-5 text-tea-green"
             >
-              <h4 className="text-lg font-normal">👋🏿 Greetings! I am</h4>
+              <h4 className="flex space-x-2 text-lg font-normal">
+                <span>👋🏿</span>
+                <Typewriter
+                  options={{
+                    strings: salutationStrings,
+                    autoStart: true,
+                    loop: true,
+                    delay: 70, // Time to complete each string
+                    pauseFor: 6000, // Optional pause after each string
+                    escapeHtml: false, // Allow HTML in strings
+                    cursor: '..',
+                  }}
+                />
+              </h4>
 
               <motion.div
                 variants={textChildrenVarients}
@@ -150,7 +169,7 @@ const Header = () => {
                       strings: professionStrings,
                       autoStart: true,
                       loop: true,
-                      delay: 50, // Optional delay between strings
+                      delay: 50, // Time to complete each string
                       pauseFor: 1000, // Optional pause after each string
                       escapeHtml: false, // Allow HTML in strings
                     }}
@@ -237,7 +256,7 @@ const Header = () => {
             >
               <ArrowDownIcon 
                 className={`w-[50px] h-[50px] text-chartreuse-color fill-midnight-green 
-                ${!downloading ? '-rotate-45' : 'rotate-90 text-midnight-green fill-[#81926D] animate-bounce'}`}
+                ${!downloading ? '-rotate-45' : 'rotate-90 text-[#81926D] fill-midnight-green animate-bounce'}`}
               />
             </CustomBtn>
 
