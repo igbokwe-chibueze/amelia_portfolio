@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
-import { HamburgerIcon, CloseIcon } from '../constants/icons';
+import { HamburgerIcon, CloseIcon, TwitterIcon, InstagramIcon } from '../constants/icons';
 import { navLinks } from '../constants/data';
 import ThemeSwitcher from './ThemeSwitcher';
+import { Link } from "react-scroll";
+import ContactBtn from './ContactBtn';
 
 
 
@@ -43,6 +45,17 @@ const childrenVarients = {
   exit: {
     x: -50,
     opacity: 0
+  }
+}
+
+const buttonVariants = {
+  hover: {
+    scale: 1.1,
+    transition: {
+      duration: 0.3,
+      repeat: Infinity,
+      repeatType: 'reverse'
+    }
   }
 }
 
@@ -115,38 +128,81 @@ const Menu = () => {
           exit="exit"
           className={`${
                 !menuToggle ? "hidden" : "block"  // Conditionally display the menu based on 'toggle' state.
-            } absolute right-0 top-0 mt-0 w-4/5 tablet:w-1/2 h-screen pt-2 pb-4 z-20 bg-chartreuse-color opacity-95 shadow-lg`}
+            } absolute right-0 top-0 mt-0 w-4/5 tablet:w-1/2 h-screen pt-2 pb-4 z-20 backdrop-blur-xl bg-caribbean-current/90 shadow-lg`}
         >
-          <motion.ul 
-            className="py-2 mt-8">
-            {navLinks.map((link) => (
-              <li key={link.text} className="menu-links">
-                <motion.div
+          <motion.div 
+            className='flex-1 flex-col justify-center items-center w-5/6 mt-12 ml-16'
+          >
+            {navLinks.map((link, index) => (
+              <Link
+                key={index}
+                to={link.href}
+                smooth={true}
+                duration={500}
+                offset={-90} // Scroll additional px ( like padding )Adjust based on your layout, Should be preferable zero
+                spy={true} //Make Link selected when scroll is at its targets position
+                activeClass="text-chartreuse-color" //class applied when element is reached//class applied when element is reached
+                className="cursor-pointer menu-links"
+                onClick={() => setMenuToggle(false)}
+              >
+                <motion.div 
                   variants={childrenVarients}
-                  whileHover={{scale: 1.1, originX: 1}}
+                  whileHover={{scale: 1.1}}
                   whileTap={{ scale: 0.7 }}
                   transition={{type: 'spring', stiffness: 90}}
+                  className={`menu-links-div ${index === navLinks.length - 1 ? 'bg-gray-500' : ''}`}
                 >
-                  <a
-                    href={link.href}
-                    onClick={() => setMenuToggle(false)}
-                    className="flex justify-end leading-normal"
-                  >
-                    <span>{link.text}</span>
-                  </a>
+                  {link.text}
                 </motion.div>
-              </li>
+              </Link>
             ))}
-
-          </motion.ul>
+          </motion.div>
           
-          <div className=" border-t border-caribbean-current ">
+          
+          <div className="mt-4 border-t border-chartreuse-color">
             <motion.div
                 variants={childrenVarients}
-                whileHover={{scale: 1.1}}
-                className="flex justify-end py-2 px-8"
+                className="flex-col flex justify-end items-end py-2 pr-8"
             >
-              <ThemeSwitcher/>
+              <motion.div
+                variants={buttonVariants}
+                whileHover="hover"
+                className='pb-4'
+              >
+                <ThemeSwitcher/>
+              </motion.div>
+
+              <div className="flex items-center gap-2">
+                <ContactBtn 
+                  text="Twitter" 
+                  backgroundColor={"bg-blue-700"} 
+                  borderColor={"border-1 border-gray-500"} 
+                  textColor={"text-black"}
+                  onClick={() => {setMenuToggle(false); window.open("https://twitter.com/Amelia_olu")}}
+                >
+                  <TwitterIcon className={"w-5 p-0.5"}/>
+                </ContactBtn>
+
+                <ContactBtn 
+                  text="Instagram" 
+                  backgroundColor={"bg-rose-700"} 
+                  borderColor={"border-1 border-gray-500"} 
+                  textColor={"text-black"}
+                  onClick={() => {setMenuToggle(false); window.open("https://www.instagram.com/amelia_olufowobi/")}}
+                >
+                  <InstagramIcon className={"w-5 p-0.5"}/>
+                </ContactBtn>
+
+                <ContactBtn 
+                  text="Twitter" 
+                  backgroundColor={"bg-blue-700"} 
+                  borderColor={"border-1 border-gray-500"} 
+                  textColor={"text-black"}
+                  onClick={() => {setMenuToggle(false); window.open("https://twitter.com/Amelia_olu")}}
+                >
+                  <TwitterIcon className={"w-5 p-0.5"}/>
+                </ContactBtn>
+              </div>
             </motion.div>
           </div>
         </motion.div>

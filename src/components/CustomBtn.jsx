@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 const CustomBtn = ({
+  classProps,
   children,
   label,
   iconURL,
@@ -8,16 +9,19 @@ const CustomBtn = ({
   borderColor,
   fullWidth,
   onClick,
+  disabled,
 }) => {
   return (
     <button
-      className={`flex justify-center items-center gap-4 px-4 py-2 border font-montserrat text-lg leading-none hover:bg-rose-500
+      className={`flex justify-center items-center border text-lg tablet:text-2xl font-bold leading-none 
+      hover:bg-[#6BC800] disabled:bg-[#81926D] disabled:opacity-90 disabled:cursor-not-allowed ${classProps}
       ${
         backgroundColor
           ? `${backgroundColor} ${textColor} ${borderColor}`
-          : "bg-coral-red text-white border-coral-red"
+          : "bg-black text-white border-black"
       } rounded-full ${fullWidth && "w-full"}`}
       onClick={onClick}
+      disabled={disabled}
     >
       {label}
 

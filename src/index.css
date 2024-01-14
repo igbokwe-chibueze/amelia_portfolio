@@ -5,28 +5,39 @@
 @tailwind utilities;
 
 @layer base {
+  /* .app {
+    @apply bg-tea-green font-baseFont;
+  } */
   .app {
-    @apply bg-primary-color font-baseFont;
+    @apply bg-[#edf2f8] font-baseFont;
   }
 }
 
 @layer components {
   .navbar {
-    @apply fixed z-40 flex justify-between items-center w-full shadow-lg backdrop-blur-xl bg-white/30;
+    @apply fixed top-0 right-0 left-0 z-40 w-full;
+  }
+
+  .navbar-container{
+    @apply flex justify-between items-center;
   }
 
   .hamburgerBtn{
-    @apply block p-1 text-gray-500 rounded 
+    @apply block p-1 bg-caribbean-current rounded-md text-tea-green
         hover:text-tea-green hover:bg-caribbean-current hover:rounded-lg 
         transition-all duration-300 ease-linear 
         focus:bg-caribbean-current focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-tea-green focus:text-tea-green
   }
 
   .menu-links {
-    @apply leading-normal text-lg text-caribbean-current py-2 px-8 mt-1 hover:bg-caribbean-current hover:text-tea-green;
+    @apply leading-normal text-lg text-tea-green
   }
 
-  .navbar-container {
+  .menu-links-div {
+    @apply flex justify-end p-2 pr-10 mt-2 rounded-lg hover:bg-caribbean-current hover:text-tea-green;
+  }
+
+  .navbar-items {
     @apply flex justify-between items-center py-4 px-8 w-full;
   }
 
@@ -34,14 +45,47 @@
     @apply leading-normal text-lg text-caribbean-current;
   }
 
+  .nav-last-link {
+    @apply rounded-full bg-chartreuse-color hover:bg-[#6BC800] hover:scale-105 px-8 py-1
+  }
+
   .nav-links-hover {
     @apply h-px inline-block w-0 bg-midnight-green absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease-in-out duration-300;
   }
+
+  .hearder-icon-circles {
+    @apply rounded-full p-3 bg-chartreuse-color border-4 border-tea-green shadow-md shadow-tea-green/40
+  }
+
+  .head-text {
+    @apply text-3xl tablet:text-5xl wide-desktop:text-7xl font-extrabold text-center text-caribbean-current capitalize
+  }
+
+  .title-text {
+    @apply text-base wide-desktop:text-3xl font-extrabold text-black
+  }
+
+  .p-text {
+    @apply text-sm text-left text-black leading-6 wide-desktop:text-3xl
+  }
+
 
 }
 
 @layer utilities {
   .progress-bar {
     @apply h-0.5 bg-chartreuse-color origin-bottom-left
+  }
+
+  .parallax {
+    @apply flex overflow-hidden tracking-tight leading-none whitespace-nowrap flex-nowrap
+  }
+
+  .scroller {
+    @apply flex font-semibold uppercase text-4xl tablet:text-6xl whitespace-nowrap flex-nowrap
+  }
+
+  .service-card {
+    @apply flex justify-start items-start flex-col w-52 wide-desktop:w-96 m-8 wide-desktop:my-8 wide-desktop:mx-16
   }
 }

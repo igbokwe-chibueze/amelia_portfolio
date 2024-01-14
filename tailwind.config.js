@@ -10,13 +10,6 @@ export default {
         baseFont: ['DM Sans', 'sans-serif'],
       },
       colors: {
-        'primary-color': '#edf2f8',
-        'secondary-color': '#313bac',
-        'black-color': '#030303',
-        'lightGray-color': '#e4e4e4',
-        'gray-color': '#6b7688',
-        'brown-color': '#46364a',
-        'white-color': '#ffffff',
         'midnight-green': '#004650',
         'caribbean-current': '#006B7A',
         'chartreuse-color': '#88FF00',
@@ -31,6 +24,9 @@ export default {
   
         'desktop': '1280px',
         // => @media (min-width: 1280px) { ... }
+
+        'wide-desktop': '2000px',
+        // => @media (min-width: 2000px) { ... }
       },
     },
   },
