@@ -1,7 +1,7 @@
+import { useState, useEffect } from 'react';
 import { ServiceCard } from "../components";
 import { images } from "../constants";
-
-
+import { urlFor, client } from '../client';
 
 // Assuming you have an array named servicesData
 const servicesData = [
@@ -33,6 +33,19 @@ const servicesData = [
 ];
 
 const About = () => {
+
+  const [services, setServices] = useState([]);
+
+  // Use the 'useEffect' hook to fetch data from the backend on component mount
+  useEffect(() => {
+    const query = '*[_type == "services"]'; // Define a query to fetch 'services' data from the backend
+
+    // Fetch data using the 'client' and update the 'services' state with the fetched data
+    client.fetch(query).then((data) => {
+      setServices(data);
+    });
+  }, []);
+
   return (
     <section
       id='about'
@@ -45,9 +58,9 @@ const About = () => {
       </h2>
 
       {/* Render a list of about profiles using 'map' function */}
-      <div className="flex justify-start items-start flex-wrap mt-8 px-28">
-        {servicesData.map((service, index) => (
-          <ServiceCard key={service.title + index} {...service} />
+      <div className="flex justify-center tablet:justify-start items-start flex-wrap mt-8 tablet:px-28">
+        {services.map((service, index) => (
+          <ServiceCard key={service.title + index} image={urlFor(service.imgUrl)} {...service} />
         ))}
       </div>
 
