@@ -88,4 +88,15 @@
   .service-card {
     @apply flex justify-start items-start flex-col w-52 wide-desktop:w-96 m-8 wide-desktop:my-8 wide-desktop:mx-16
   }
+
+  .social-links {
+    @apply flex justify-end items-center flex-col p-4
+  }
+
+  .social-links-icons {
+    @apply w-10 h-10 wide-desktop:w-20 wide-desktop:h-20 flex justify-center items-center my-1 wide-desktop:my-2 
+    rounded-full border border-caribbean-current text-caribbean-current
+    hover:bg-chartreuse-color hover:border-chartreuse-color hover:text-white
+    transition duration-700 ease-in-out 
+  }
 }
