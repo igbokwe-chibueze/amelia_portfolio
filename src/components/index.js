@@ -2,11 +2,12 @@ import ContactBtn from "./ContactBtn";
 import CustomBtn from "./CustomBtn";
 import Menu from "./Menu";
 import Navbar from "./Navbar";
+import NavigationDots from "./NavigationDots";
 import ParallaxText from "./ParallaxText";
 import ProgressBar from "./ProgressBar";
 import ServiceCard from "./ServiceCard";
+import SocialMedia from "./SocialMedia";
 import ThemeSwitcher from "./ThemeSwitcher";
-
 
 
 export {
@@ -17,6 +18,8 @@ export {
     ThemeSwitcher,
     ProgressBar,
     ParallaxText,
-    ServiceCard
+    ServiceCard,
+    NavigationDots,
+    SocialMedia
 
 }

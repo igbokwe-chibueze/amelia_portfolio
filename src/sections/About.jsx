@@ -1,36 +1,10 @@
 import { useState, useEffect } from 'react';
-import { ServiceCard } from "../components";
+import { NavigationDots, ServiceCard } from "../components";
 import { images } from "../constants";
 import { urlFor, client } from '../client';
+import SocialMedia from '../components/SocialMedia';
 
-// Assuming you have an array named servicesData
-const servicesData = [
-  {
-    image: images.about01,
-    title: 'UI/UX Designe',
-    description: 'React Native developers build mobile apps that bridge the gap between native performance and cross-platform flexibility.',
-  },
-  {
-    image: images.about02,
-    title: 'Graphics Designe',
-    description: 'Frontend development brings digital visions to life, shaping the user experience with code and creativity.',
-  },
-  {
-    image: images.about03,
-    title: 'Project Management',
-    description: 'Backend developers orchestrate the digital symphony, powering applications and services hidden behind the curtains.',
-  },
-  {
-    image: images.about04,
-    title: 'Content Writing',
-    description: 'Web designers craft digital experiences that blend aesthetics and functionality into pixel-perfect artistry.',
-  },
-  {
-    image: images.about04,
-    title: 'Service 4',
-    description: 'Web designers craft digital experiences that blend aesthetics and functionality into pixel-perfect artistry.',
-  },
-];
+
 
 const About = () => {
 
@@ -63,6 +37,9 @@ const About = () => {
           <ServiceCard key={service.title + index} image={urlFor(service.imgUrl)} {...service} />
         ))}
       </div>
+
+      <SocialMedia/>
+      <NavigationDots/>
 
     </section>
   )
