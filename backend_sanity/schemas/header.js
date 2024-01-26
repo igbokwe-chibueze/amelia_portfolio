@@ -3,15 +3,22 @@ export default {
     title:'Header',
     type: 'document',
     fields:[
+        {
+            name:'parallaxText',
+            title:'ParallaxText',
+            type:'string'
+        },
         { 
-            name:'salutation',
-            title:'Salutation',
-            type: 'string'
+            name:'salutations',
+            title:'Salutations',
+            type:'array',
+            of: [{ type: 'string' }],
         },
         {
-            name:'name',
-            title:'Name',
-            type:'string'
+            name:'professions',
+            title:'Professions',
+            type:'array',
+            of: [{ type: 'string' }],
         },
         {
             name:'imgurl',

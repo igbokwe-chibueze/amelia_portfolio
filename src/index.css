@@ -58,7 +58,7 @@
   }
 
   .head-text {
-    @apply text-3xl tablet:text-5xl wide-desktop:text-7xl font-extrabold text-center text-caribbean-current capitalize
+    @apply pt-20 tablet:text-5xl wide-desktop:text-7xl font-extrabold text-center text-caribbean-current capitalize
   }
 
   .title-text {
@@ -69,6 +69,21 @@
     @apply text-sm text-left text-black leading-6 wide-desktop:text-3xl
   }
 
+  .app-container {
+    @apply w-full min-h-screen flex flex-row
+  }
+
+  .app-flex {
+    @apply flex justify-center items-center
+  }
+
+  .app-wrapper {
+    @apply flex-1 w-full flex-col
+  }
+
+  .copyright {
+    @apply w-full flex flex-col justify-end items-end
+  }
 
 }
 
@@ -86,7 +101,7 @@
   }
 
   .service-card {
-    @apply flex justify-start items-start flex-col w-52 wide-desktop:w-96 m-8 wide-desktop:my-8 wide-desktop:mx-16
+    @apply flex justify-start items-start flex-col w-48 wide-desktop:w-96 m-8 wide-desktop:my-8 wide-desktop:mx-16
   }
 
   .social-links {
@@ -99,4 +114,8 @@
     hover:bg-chartreuse-color hover:border-chartreuse-color hover:text-white
     transition duration-700 ease-in-out 
   }
+
+  .active-link {
+    @apply bg-midnight-green
+}
 }

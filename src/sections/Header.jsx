@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { images } from '../constants';
 import { CustomBtn, ParallaxText } from '../components';
 import { ArrowDownIcon } from '../constants/icons';
 import { motion } from 'framer-motion';
 import Typewriter from 'typewriter-effect';
-
+import { urlFor, client } from '../client';
 
 const buttonVariants = {
   rest: {
@@ -19,10 +19,8 @@ const buttonVariants = {
   },
 };
 
-// Variants for the scale animation
 const textSlideVariants = {
   whileInView: {
-    // Animation effect for scale and opacity from 0 to 1
     x: [-100, 0],
     opacity: [0, 1],
     // Animation transition properties
@@ -68,18 +66,18 @@ const hoverScaleVariants = {
 
 const Header = () => {
 
-  const professionStrings = [
-    'UI/UX Designer...',
-    'Project Manager...',
-    'Graphics Designer...',
-    'Content Writer...'
-  ];
+  const [header, setHeader] = useState([]);
 
-  const salutationStrings = [
-    'Greetings!', 'E kúsẹ́!', 'Ndewo!', 'Salamai!', 'السلام (As-salam)!', 'Salamu!',
-    'Greetings!', '你好 (Nǐ hǎo)!', 'Saludos!', 'नमस्ते (Namaste)!', 'Saudações!', 'Grüße!',
-    'Greetings!', 'こんにちは (Konnichiwa)!', '안녕하세요 (Annyeonghaseyo)!', 'Selamlar!', 'Привет (Privet)',
-  ];
+  // Fetch header data using the 'client' object on component mount
+  useEffect(() => {
+    // Define queries to fetch data from the 'header' from Sanity
+    const query = '*[_type == "header"][0]'; // Fetch the first header object.
+
+    // Fetch header data
+    client.fetch(query).then((data) => {
+      setHeader(data);
+    });
+  }, []);
 
   const [downloading, setDownloading] = useState(false);
 
@@ -116,10 +114,12 @@ const Header = () => {
   };
 
   return (
+    //<section id='header' className="w-full min-h-screen pt-16 px-2">
     <section id='header' className="w-full min-h-screen pt-16 px-2">
       <div className="bg-midnight-green rounded-lg mb-8">
         <div className="bg-caribbean-current text-tea-green rounded-t-lg p-3 tablet:p-4">
-          <ParallaxText baseVelocity={1}>UI/UX DESIGNER + GRAPHICS DESIGNER + PROJECT MANAGER +</ParallaxText>
+          {/* <ParallaxText baseVelocity={1}>UI/UX DESIGNER + GRAPHICS DESIGNER + PROJECT MANAGER +</ParallaxText> */}
+          <ParallaxText baseVelocity={1}>{header.parallaxText}</ParallaxText>
         </div>
 
         <div className="grid grid-cols-1 tablet:grid-cols-3 gap-4 mt-4 mx-4">
@@ -134,7 +134,7 @@ const Header = () => {
                 <span>👋🏿</span>
                 <Typewriter
                   options={{
-                    strings: salutationStrings,
+                    strings: header.salutations,
                     autoStart: true,
                     loop: true,
                     delay: 70, // Time to complete each string
@@ -152,7 +152,7 @@ const Header = () => {
                 className="flex flex-col gap-5"
               >
                 <h1 className="text-6xl font-bold">
-                  Hi, I'm <span className="text-chartreuse-color capitalize">Amelia Olufowobi</span>
+                  Hi, I&apos;m <span className="text-chartreuse-color capitalize">Amelia Olufowobi</span>
                 </h1>
               </motion.div>
 
@@ -166,7 +166,7 @@ const Header = () => {
                   <span>a</span>
                   <Typewriter
                     options={{
-                      strings: professionStrings,
+                      strings: header.professions,
                       autoStart: true,
                       loop: true,
                       delay: 50, // Time to complete each string
@@ -176,8 +176,7 @@ const Header = () => {
                   />
                 </h2>
                 <p className="text-base leading-6 tracking-wide">
-                  Designing Dreams, Managing Realities:
-                  Where UI/UX Wizardry, Graphic Alchemy, and Project Prowess Unite
+                  {header.remark}
                 </p>
               </motion.div>
             </motion.div>
@@ -190,11 +189,15 @@ const Header = () => {
               transition={{ duration: 1.5 }}
               className="flex justify-center items-center"
             >
-              <img
-                src={images.profile}
-                alt="fallback_image"
-                className="object-contain z-10 tablet:-mt-14 p-0 w-[350px] h-[350px] tablet:w-[450px] tablet:h-[450px]"
-              />
+              {header.imgurl ? (
+                <img 
+                  src={urlFor(header.imgurl)} 
+                  alt="profile_bg" 
+                  className="object-contain z-10 tablet:-mt-14 p-0 w-[350px] h-[350px] tablet:w-[450px] tablet:h-[450px]"
+                />
+              ) : (
+                "" // In the absence of a profile picture, leave the area blank. I can also place a temporal picture here.
+              )}
             </motion.div>
           </div>
 
@@ -267,4 +270,5 @@ const Header = () => {
   );
 };
 
+//export default AppWrap(Header, 'header');
 export default Header;

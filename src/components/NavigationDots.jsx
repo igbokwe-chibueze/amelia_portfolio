@@ -5,7 +5,7 @@ import { Link } from "react-scroll"
 
 const NavigationDots = () => {
   return (
-    <div className="flex justify-center items-center flex-col p-4">
+    <div className="flex justify-center items-center flex-col">
         {navLinks.map((link, index) => (
             <Link
                 key={index}
@@ -14,10 +14,8 @@ const NavigationDots = () => {
                 duration={500}
                 offset={-90} // Scroll additional px ( like padding )Adjust based on your layout, Should be preferable zero
                 spy={true} //Make Link selected when scroll is at its targets position
-                activeClass="bg-caribbean-current" //class applied when element is reached
-                className={`cursor-pointer w-2.5 h-2.5 rounded-full border m-2 ${
-                    link.activeClass ? 'bg-caribbean-current' : 'bg-chartreuse-color hover:bg-caribbean-current'
-                }`}
+                activeClass="bg-chartreuse-color" //class applied when element is reached
+                className="cursor-pointer w-2.5 h-2.5 rounded-full border border-midnight-green m-2 bg-caribbean-current hover:bg-chartreuse-color"
             ></Link>
         ))}
     </div>
