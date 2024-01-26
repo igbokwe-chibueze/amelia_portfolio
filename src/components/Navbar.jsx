@@ -106,7 +106,7 @@ const Navbar = () => {
                             to={link.href}
                             smooth={true}
                             duration={500}
-                            offset={-90} // Scroll additional px ( like padding )Adjust based on your layout, Should be preferable zero
+                            offset={0} // Scroll additional px ( like padding )Adjust based on your layout. -90
                             spy={true} //Make Link selected when scroll is at its targets position
                             activeClass="border-b border-midnight-green" //class applied when element is reached
                             className="cursor-pointer nav-links relative group"

@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import { NavigationDots, ServiceCard } from "../components";
-import { images } from "../constants";
+import { ServiceCard } from "../components";
 import { urlFor, client } from '../client';
-import SocialMedia from '../components/SocialMedia';
+import { AppWrap } from '../wrapper';
 
 
 
-const About = () => {
+const About = AppWrap(() => {
 
   const [services, setServices] = useState([]);
 
@@ -22,12 +21,10 @@ const About = () => {
 
   return (
     <section
-      id='about'
-      className="bg-white w-full min-h-screen"
+      //className="bg-white w-full min-h-screen"
     >
       {/* Heading for the About section */}
       <h2 className="head-text">
-        {/* I Know that <span className="text-[#7700ff]">Good Design</span> <br />means  <span className="text-[#7700ff]">Good Business</span> */}
         Crafting Excellence: <span className="text-[#7700ff]">Explore What I Offer.</span>
       </h2>
 
@@ -38,11 +35,8 @@ const About = () => {
         ))}
       </div>
 
-      <SocialMedia/>
-      <NavigationDots/>
-
     </section>
   )
-}
+}, 'about', 'bg-white');
 
 export default About

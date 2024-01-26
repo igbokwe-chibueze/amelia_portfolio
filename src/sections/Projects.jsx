@@ -1,10 +1,10 @@
+import { AppWrap } from "../wrapper";
 
-
-const Projects = () => {
+const Projects = AppWrap(() => {
   return (
     <section 
-      id='projects'
-      className="w-full h-screen px-2 pt-20 bg-orange-500"
+      //id='projects'
+      className="w-full h-screen px-2 pt-20"
     >
       <div>
         Projects
@@ -12,6 +12,6 @@ const Projects = () => {
 
     </section>
   )
-}
+}, 'projects');
 
 export default Projects
