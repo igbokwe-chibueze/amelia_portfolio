@@ -17,10 +17,10 @@ const AppWrap = (Component, idName, classNames) => function HOC() {
         <Component />
 
         {/* Render the 'copyright' section */}
-        <div className="hidden tablet:flex copyright">
+        {/* <div className="hidden tablet:flex copyright">
           <p>@2024 AMELIA</p>
           <p>All rights reserved</p>
-        </div>
+        </div> */}
       </div>
 
       {/* Render the 'NavigationDots' component to display navigation dots */}

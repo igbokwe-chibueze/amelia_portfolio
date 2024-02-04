@@ -20,17 +20,15 @@ const About = AppWrap(() => {
   }, []);
 
   return (
-    <section
-      //className="bg-white w-full min-h-screen"
-    >
+    <section>
       {/* Heading for the About section */}
       <h2 className="head-text">
         Crafting Excellence: <span className="text-[#7700ff]">Explore What I Offer.</span>
       </h2>
 
-      {/* Render a list of about profiles using 'map' function */}
+      {/* Render a list of the first four services using 'map' function */}
       <div className="flex justify-center tablet:justify-start items-start flex-wrap mt-8 tablet:px-28">
-        {services.map((service, index) => (
+        {services.slice(0, 4).map((service, index) => (
           <ServiceCard key={service.title + index} image={urlFor(service.imgUrl)} {...service} />
         ))}
       </div>
