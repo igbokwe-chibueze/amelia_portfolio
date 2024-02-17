@@ -35,6 +35,6 @@ const About = AppWrap(() => {
 
     </section>
   )
-}, 'about', 'bg-white');
+}, 'about', 'bg-tea-green');
 
 export default About

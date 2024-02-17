@@ -91,7 +91,7 @@ const Projects = AppWrap(() => {
           <div
             key={index}
             onClick={() => handleProjectsFilter(item)}
-            className={`project-filter-item p-text ${activeFilter === item ? 'item-active' : ''}`}
+            className={`project-filter-item p-text ${activeFilter === item ? 'bg-midnight-green text-chartreuse-color' : ''}`}
           >
             {item}
           </div>

@@ -1,5 +1,6 @@
 import ContactBtn from "./ContactBtn";
 import CustomBtn from "./CustomBtn";
+import ExperienceTimeline from "./ExperienceTimeline";
 import Menu from "./Menu";
 import Navbar from "./Navbar";
 import NavigationDots from "./NavigationDots";
@@ -9,6 +10,7 @@ import ProjectsCard from "./ProjectsCard";
 import ServiceCard from "./ServiceCard";
 import SocialMedia from "./SocialMedia";
 import ThemeSwitcher from "./ThemeSwitcher";
+
 
 
 export {
@@ -22,6 +24,7 @@ export {
     ServiceCard,
     ProjectsCard,
     NavigationDots,
-    SocialMedia
+    SocialMedia,
+    ExperienceTimeline
 
 }

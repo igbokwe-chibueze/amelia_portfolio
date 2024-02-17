@@ -85,7 +85,7 @@ const Menu = () => {
     }, []); // The empty dependency array ensures this effect only runs once when the component is mounted.
 
   return (
-    <div className="">
+    <div>
       {/* Hamburger */}
       <div className='lg:hidden'>
         <button type="button"

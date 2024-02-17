@@ -17,30 +17,30 @@ const ProjectsCard = ({ image, title, description, projectLink, liveLink, caseSt
 
             {/* Render hover effects with links to project and code */}
             <motion.div
-            whileHover={{ opacity: [0, 1] }}
-            transition={{ duration: 0.25, ease: 'easeInOut', staggerChildren: 0.5 }}
-            className="project-card-hover app-flex"
+                whileHover={{ opacity: [0, 1] }}
+                transition={{ duration: 0.5, ease: 'easeInOut', staggerChildren: 0.5 }}
+                className="project-card-hover app-flex"
             >
-            <a href={projectLink} target="_blank" rel="noreferrer">
-                <motion.div
-                whileInView={{ scale: [0, 1] }}
-                whileHover={{ scale: [1, 0.90] }}
-                transition={{ duration: 0.25 }}
-                className="project-card-icon app-flex"
-                >
-                    <EarthIcon className={'fill-white w-2/4 h-2/4'}/>
-                </motion.div>
-            </a>
-            <a href={liveLink} target="_blank" rel="noreferrer">
-                <motion.div
-                whileInView={{ scale: [0, 1] }}
-                whileHover={{ scale: [1, 0.90] }}
-                transition={{ duration: 0.25 }}
-                className="project-card-icon app-flex"
-                >
-                    <EyeIcon className={'fill-white w-2/4 h-2/4'}/>
-                </motion.div>
-            </a>
+                <a href={projectLink} target="_blank" rel="noreferrer">
+                    <motion.div
+                        whileInView={{ scale: [0, 1] }}
+                        whileHover={{ scale: [1, 0.90] }}
+                        transition={{ duration: 0.25 }}
+                        className="project-card-icon app-flex"
+                    >
+                        <EarthIcon className={'fill-white w-2/4 h-2/4'}/>
+                    </motion.div>
+                </a>
+                <a href={liveLink} target="_blank" rel="noreferrer">
+                    <motion.div
+                        whileInView={{ scale: [0, 1] }}
+                        whileHover={{ scale: [1, 0.90] }}
+                        transition={{ duration: 0.25 }}
+                        className="project-card-icon app-flex"
+                    >
+                        <EyeIcon className={'fill-white w-2/4 h-2/4'}/>
+                    </motion.div>
+                </a>
             </motion.div>
         </div>
 
@@ -53,10 +53,10 @@ const ProjectsCard = ({ image, title, description, projectLink, liveLink, caseSt
             {
                 caseStudy && (
                     <a href={caseStudy} target="_blank" rel="noopener noreferrer" className="project-card-badge app-flex group">
-                    <p className="p-text">Case Study</p>
-                    <div className='invisible group-hover:visible group-hover:translate-x-1 transition duration-700 ease-in-out'>
-                        <ArrowRightIcon className={'w-7 h-7 text-chartreuse-color fill-midnight-green'}/>
-                    </div>
+                        <p className="p-text">Case Study</p>
+                        <div className='invisible group-hover:visible group-hover:translate-x-1 transition duration-700 ease-in-out'>
+                            <ArrowRightIcon className={'w-7 h-7 text-chartreuse-color fill-midnight-green'}/>
+                        </div>
                     </a>
                 )
             }
@@ -67,7 +67,7 @@ const ProjectsCard = ({ image, title, description, projectLink, liveLink, caseSt
                 {tag.map((item, index) => (
                     <div
                         key={index}
-                        className='tag-item'
+                        className='project-card-tag-item'
                     >
                         {normalizeTag(item)}
                     </div>

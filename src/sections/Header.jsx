@@ -77,35 +77,45 @@ const Header = () => {
     client.fetch(query).then((data) => {
       setHeader(data);
     });
+
   }, []);
 
   const [downloading, setDownloading] = useState(false);
 
   // Function to handle the download button click
-  const handleDownloadClick = () => {
+  const handleDownloadClick = async () => {
+
     // Set the downloading state to true
     setDownloading(true);
 
-    // Replace 'your-file-path.pdf' with the actual path of your PDF file
-    const pdfFilePath = '/src/assets/Amelia CV.pdf';
+    // Resolve the reference to get the file asset
+    const fileAsset = await client.getDocument(header.ameliaResume.asset._ref)
+    
+    // Extract the URL from the file asset
+    const resumeUrl = fileAsset.url;
 
-    // Create a temporary link element
+    //window.open(resumeUrl, '_blank'); // Opens the file URL in a new tab
+
+    // Extract the file name from the file asset
+    const resumeName = fileAsset.originalFilename;
+    
+    // Fetch the file as a blob
+    const response = await fetch(resumeUrl);
+    const blob = await response.blob();
+
+    // Create a temporary anchor element
+    const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
-
-    // Set the href attribute to the file path
-    link.href = pdfFilePath;
-
-    // Set the download attribute with the desired file name
-    link.download = pdfFilePath.substring(pdfFilePath.lastIndexOf('/') + 1);
-
-    // Append the link to the document
+    link.href = url;
+    link.download = resumeName; // Set the desired file name here
     document.body.appendChild(link);
 
-    // Trigger a click on the link to start the download
+    // Trigger a click event on the anchor element
     link.click();
 
-    // Remove the link from the document
+    // Remove the temporary anchor element and URL object
     document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
 
     // Reset the downloading state after a short delay (adjust the delay as needed)
     setTimeout(() => {
@@ -114,7 +124,6 @@ const Header = () => {
   };
 
   return (
-    //<section id='header' className="w-full min-h-screen pt-16 px-2">
     <section id='header' className="w-full min-h-screen pt-16 px-2">
       <div className="bg-midnight-green rounded-lg mb-8">
         <div className="bg-caribbean-current text-tea-green rounded-t-lg p-3 tablet:p-4">
@@ -144,7 +153,7 @@ const Header = () => {
                   }}
                 />
               </h4>
-
+              
               <motion.div
                 variants={textChildrenVarients}
                 whileInView={textChildrenVarients.whileInView}
