@@ -14,6 +14,42 @@
 }
 
 @layer components {
+
+  /* General */
+  .head-text {
+    @apply pt-20 tablet:text-5xl wide-desktop:text-7xl font-extrabold text-center text-caribbean-current capitalize
+  }
+
+  .title-text {
+    @apply text-base wide-desktop:text-3xl font-extrabold text-caribbean-current
+  }
+
+  .p-text {
+    @apply text-sm text-left text-gray-600 leading-6 wide-desktop:text-3xl
+  }
+
+  .app-container {
+    @apply w-full min-h-screen flex flex-row
+  }
+
+  .app-flex {
+    @apply flex justify-center items-center
+  }
+
+  .app-wrapper {
+    @apply flex-1 w-full flex-col
+  }
+  /*** end general ***/
+
+
+  /* HOC */
+  .copyright {
+    @apply w-full flex flex-col justify-end items-end
+  }
+  /*** end hoc ***/
+
+  
+  /* Navbar & Menu Component */
   .navbar {
     @apply fixed top-0 right-0 left-0 z-40 w-full;
   }
@@ -52,39 +88,35 @@
   .nav-links-hover {
     @apply h-px inline-block w-0 bg-midnight-green absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease-in-out duration-300;
   }
+  /*** end navbar & menu component ***/
 
+
+  /* Header Page */
   .hearder-icon-circles {
     @apply rounded-full p-3 bg-chartreuse-color border-4 border-tea-green shadow-md shadow-tea-green/40
   }
+  /*** end header page ***/
 
-  .head-text {
-    @apply pt-20 tablet:text-5xl wide-desktop:text-7xl font-extrabold text-center text-caribbean-current capitalize
+
+  /* ParallaxText Component*/
+  .parallax {
+    @apply flex overflow-hidden tracking-tight leading-none whitespace-nowrap flex-nowrap
   }
 
-  .title-text {
-    @apply text-base wide-desktop:text-3xl font-extrabold text-caribbean-current
+  .scroller {
+    @apply flex font-semibold uppercase text-4xl tablet:text-6xl whitespace-nowrap flex-nowrap
   }
+  /*** end parallaxtext component***/
 
-  .p-text {
-    @apply text-sm text-left text-gray-600 leading-6 wide-desktop:text-3xl
+
+  /* ServiceCard Component*/
+  .service-card {
+    @apply flex justify-start items-start flex-col w-48 wide-desktop:w-96 m-8 wide-desktop:my-8 wide-desktop:mx-16
   }
+  /*** end servicecard component***/
 
-  .app-container {
-    @apply w-full min-h-screen flex flex-row
-  }
 
-  .app-flex {
-    @apply flex justify-center items-center
-  }
-
-  .app-wrapper {
-    @apply flex-1 w-full flex-col
-  }
-
-  .copyright {
-    @apply w-full flex flex-col justify-end items-end
-  }
-
+  /* Projects Page*/  
   .project-filter {
     @apply flex flex-row justify-center items-center flex-wrap mt-8 mb-2
   }
@@ -95,48 +127,13 @@
     hover:bg-midnight-green hover:text-chartreuse-color transition duration-700 ease-in-out
   }
 
-  .item-active {
-    @apply bg-midnight-green text-chartreuse-color
-  }
-
-}
-
-@layer utilities {
-  .progress-bar {
-    @apply h-0.5 bg-chartreuse-color origin-bottom-left
-  }
-
-  .parallax {
-    @apply flex overflow-hidden tracking-tight leading-none whitespace-nowrap flex-nowrap
-  }
-
-  .scroller {
-    @apply flex font-semibold uppercase text-4xl tablet:text-6xl whitespace-nowrap flex-nowrap
-  }
-
-  .service-card {
-    @apply flex justify-start items-start flex-col w-48 wide-desktop:w-96 m-8 wide-desktop:my-8 wide-desktop:mx-16
-  }
-
-  .social-links {
-    @apply flex justify-end items-center flex-col p-4
-  }
-
-  .social-links-icons {
-    @apply w-10 h-10 wide-desktop:w-20 wide-desktop:h-20 flex justify-center items-center my-1 wide-desktop:my-2 
-    rounded-full border border-caribbean-current text-caribbean-current
-    hover:bg-chartreuse-color hover:border-chartreuse-color hover:text-white
-    transition duration-700 ease-in-out 
-  }
-
-  .active-link {
-    @apply bg-midnight-green
-  }
-
   .project-container {
     @apply flex flex-wrap justify-center items-start
   }
+  /*** end projects page ***/
 
+
+  /* ProjectsCard Component*/ 
   .project-card {
     @apply w-full tablet:w-72 wide-desktop:w-96 flex-col m-4 tablet:m-8 p-4 wide-desktop:p-5 rounded-lg wide-desktop:rounded-xl 
     bg-white transition duration-700 ease-in-out hover:shadow-2xl hover:shadow-black/60
@@ -166,8 +163,42 @@
     @apply flex flex-wrap gap-2 mt-4 justify-end
   }
 
-  .tag-item {
-    @apply bg-red-500 rounded-3xl py-0.5 px-2 text-white text-xs
+  .project-card-tag-item {
+    @apply bg-midnight-green rounded-3xl py-0.5 px-2 text-tea-green text-xs
   }
+  /*** end projectscard component ***/
+
+
+  /* Social Links Component */ 
+  .social-links {
+    @apply flex justify-end items-center flex-col p-4
+  }
+
+  .social-links-icons {
+    @apply w-10 h-10 wide-desktop:w-20 wide-desktop:h-20 flex justify-center items-center my-1 wide-desktop:my-2 
+    rounded-full border border-caribbean-current text-caribbean-current
+    hover:bg-chartreuse-color hover:border-chartreuse-color hover:text-white
+    transition duration-700 ease-in-out 
+  }
+  /*** end social links component ***/ 
+
+
+  /* Skills Page */ 
+  .box-back {
+    @apply absolute w-full h-full bg-caribbean-current rounded-2xl border-4 border-tea-green shadow-xl backdrop-blur-md
+    rotate-12 group-hover:rotate-0 group-hover:scale-110 transition duration-500 ease-in-out
+  }
+
+  .box-front {
+    @apply absolute w-full h-full group-hover:scale-110 transition duration-500 ease-in-out
+  }
+  /*** end skills page ***/ 
+
+
+
+  /* .active-link {
+    @apply bg-midnight-green
+  } */
+
 
 }

@@ -25,7 +25,8 @@ const AppWrap = (Component, idName, classNames) => function HOC() {
 
       {/* Render the 'NavigationDots' component to display navigation dots */}
       <div className='hidden tablet:flex'>
-        <NavigationDots active={idName} />
+        <NavigationDots />
+        {/* <NavigationDots active={idName} /> */}
       </div>
       
     </div>

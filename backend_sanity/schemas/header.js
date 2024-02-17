@@ -32,6 +32,15 @@ export default {
             name:'remark',
             title:'Remark',
             type:'string'
+        },
+        {
+            title: 'AmeliaResume',
+            name: 'ameliaResume',
+            type: 'file',
+            options: {
+                accept: '.pdf', // Define accepted file types, e.g., PDF
+              },
+              validation: (Rule) => Rule.required(),
         }
     ]
 }

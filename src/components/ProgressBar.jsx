@@ -10,7 +10,7 @@ const ProgressBar = () => {
   });
 
   return (
-    <motion.div className="progress-bar" style={{ scaleX }} />
+    <motion.div className="h-0.5 bg-chartreuse-color origin-bottom-left" style={{ scaleX }} />
   )
 }
 
