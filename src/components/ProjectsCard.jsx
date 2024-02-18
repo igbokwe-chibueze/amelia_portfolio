@@ -10,7 +10,11 @@ const normalizeTag = (tag) => {
 const ProjectsCard = ({ image, title, description, projectLink, liveLink, caseStudy, tag }) => {
 
   return (
-    <div className="project-card app-flex">
+    <motion.div
+        whileInView={{opacity: [0, 1] }} // Animate opacity to 1 when the element is in view
+        transition={{ opacity: { duration: 1.0, type: 'tween' }}} // Set the animation duration and type
+        className="project-card app-flex"
+    >
         {/* Render the project image */}
         <div className="project-card-img app-flex">
             <img src={image} alt={title} className='w-full h-full rounded-lg object-cover' />
@@ -75,7 +79,7 @@ const ProjectsCard = ({ image, title, description, projectLink, liveLink, caseSt
             </div>
 
         </div>
-    </div>
+    </motion.div>
   )
 }
 

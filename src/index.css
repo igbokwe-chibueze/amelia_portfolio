@@ -185,7 +185,12 @@
 
   /* Skills Page */ 
   .box-back {
-    @apply absolute w-full h-full bg-caribbean-current rounded-2xl border-4 border-tea-green shadow-xl backdrop-blur-md
+    @apply absolute w-[105%] h-[105%] bg-white rounded-2xl border border-white shadow-xl backdrop-blur-md
+    -rotate-6 group-hover:rotate-0 group-hover:scale-110 transition duration-500 ease-in-out
+  }
+
+  .box-center {
+    @apply absolute w-full h-full bg-tea-green rounded-2xl border-2 border-white shadow-xl backdrop-blur-md
     rotate-12 group-hover:rotate-0 group-hover:scale-110 transition duration-500 ease-in-out
   }
 
