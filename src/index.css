@@ -185,7 +185,12 @@
 
   /* Skills Page */ 
   .box-back {
-    @apply absolute w-full h-full bg-caribbean-current rounded-2xl border-4 border-tea-green shadow-xl backdrop-blur-md
+    @apply absolute w-[105%] h-[105%] bg-white rounded-2xl border border-white shadow-xl backdrop-blur-md
+    -rotate-6 group-hover:rotate-0 group-hover:scale-110 transition duration-500 ease-in-out
+  }
+
+  .box-center {
+    @apply absolute w-full h-full bg-tea-green rounded-2xl border-2 border-white shadow-xl backdrop-blur-md
     rotate-12 group-hover:rotate-0 group-hover:scale-110 transition duration-500 ease-in-out
   }
 
@@ -195,6 +200,27 @@
   /*** end skills page ***/ 
 
 
+  /* Testimonials Section */ 
+  .testimonial .slick-arrow.slick-prev,
+  .testimonial .slick-arrow.slick-next {
+    @apply w-10 h-10 flex items-center justify-center z-10 rounded-full p-2 shadow-2xl shadow-gray-500 tablet:bg-midnight-green tablet:text-chartreuse-color;
+  }
+
+  .testimonial .slick-prev::before,
+  .testimonial .slick-next::before {
+    @apply hidden;
+  }
+
+  .testimonial .slick-slide > div {
+    @apply transform scale-75 transition-transform duration-700 ease-in-out;
+  }
+  
+  .testimonial .slick-center > div {
+    @apply transform scale-100;
+  }
+  /*** end testimonials section ***/ 
+
+ 
 
   /* .active-link {
     @apply bg-midnight-green
@@ -202,3 +228,5 @@
 
 
 }
+
+

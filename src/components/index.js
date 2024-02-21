@@ -8,7 +8,9 @@ import ParallaxText from "./ParallaxText";
 import ProgressBar from "./ProgressBar";
 import ProjectsCard from "./ProjectsCard";
 import ServiceCard from "./ServiceCard";
+import SkillCard from "./SkillCard";
 import SocialMedia from "./SocialMedia";
+import TestimonialCard from "./TestimonialCard";
 import ThemeSwitcher from "./ThemeSwitcher";
 
 
@@ -25,6 +27,8 @@ export {
     ProjectsCard,
     NavigationDots,
     SocialMedia,
-    ExperienceTimeline
+    ExperienceTimeline,
+    SkillCard,
+    TestimonialCard
 
 }

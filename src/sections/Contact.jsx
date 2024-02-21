@@ -1,17 +1,14 @@
+import { AppWrap } from "../wrapper";
 
-
-const Contact = () => {
+const Contact = AppWrap(() => {
   return (
-    <section
-      id='contact'
-      className="w-full h-screen px-2 pt-20 bg-blue-500"
-    >
+    <>
       <div>
         Contact
       </div>
 
-    </section>
+    </>
   )
-}
+}, 'contact', 'bg-tea-green');
 
 export default Contact

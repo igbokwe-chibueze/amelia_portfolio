@@ -2,7 +2,7 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 // Importing specific components from the "components" and "sections" directories.
 import { Navbar } from "./components"
-import { About, Blogs, Contact, Favourites, Header, Projects, Testimonials, Skills } from "./sections"
+import { Services, Blogs, Contact, GraphicsDesigns, Header, Projects, Testimonials, Skills } from "./sections"
 
 
 
@@ -20,10 +20,10 @@ const App = () => {
                 <Navbar/>
                 <section>
                   <Header/>
-                  <About/>
+                  <Services/>
                   <Projects/>
                   <Skills/>
-                  <Favourites/>
+                  <GraphicsDesigns/>
                   <Testimonials/>
                   <Blogs/>
                   <Contact/>

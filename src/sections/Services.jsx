@@ -5,7 +5,7 @@ import { AppWrap } from '../wrapper';
 
 
 
-const About = AppWrap(() => {
+const Services = AppWrap(() => {
 
   const [services, setServices] = useState([]);
 
@@ -21,7 +21,7 @@ const About = AppWrap(() => {
 
   return (
     <section>
-      {/* Heading for the About section */}
+      {/* Heading for the Services section */}
       <h2 className="head-text">
         Crafting Excellence: <span className="text-[#7700ff]">Explore What I Offer.</span>
       </h2>
@@ -35,6 +35,6 @@ const About = AppWrap(() => {
 
     </section>
   )
-}, 'about', 'bg-tea-green');
+}, 'services', 'bg-tea-green');
 
-export default About
+export default Services

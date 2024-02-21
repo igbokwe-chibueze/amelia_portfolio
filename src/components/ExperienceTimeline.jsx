@@ -79,7 +79,7 @@ const ExperienceTimeline = ({ experiences }) => {
           icon={
             <button 
               onClick={loadMore} 
-              className=" w-full h-full justify-center items-center bg-blue-500 hover:bg-blue-700 
+              className=" w-full h-full justify-center items-center bg-blue-500 hover:bg-blue-700 transition duration-700 ease-in-out
               text-white font-bold tablet:py-2 px-2 rounded-full text-xl tablet:text-4xl"
             >
               +
