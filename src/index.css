@@ -221,6 +221,22 @@
   /*** end testimonials section ***/ 
 
  
+  /* Contact Section */ 
+  .input {
+    @apply bg-white w-full p-2 border border-gray-300 rounded-md text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 shadow;
+  }
+
+  .input-text {
+    @apply text-blue-500 transform scale-75;
+    transition: transform 200ms ease, text-blue-500 200ms ease; /* Add transition for smooth movement */
+  }
+  
+  /* Adjust position when input is focused */
+  label:focus-within .input-text {
+    @apply -translate-y-5 -translate-x-2; /* Adjust these values as needed */
+  }
+  /*** end contact section ***/
+
 
   /* .active-link {
     @apply bg-midnight-green
