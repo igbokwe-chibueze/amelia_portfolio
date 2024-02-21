@@ -200,6 +200,27 @@
   /*** end skills page ***/ 
 
 
+  /* Testimonials Section */ 
+  .testimonial .slick-arrow.slick-prev,
+  .testimonial .slick-arrow.slick-next {
+    @apply w-10 h-10 flex items-center justify-center z-10 rounded-full p-2 shadow-2xl shadow-gray-500 tablet:bg-midnight-green tablet:text-chartreuse-color;
+  }
+
+  .testimonial .slick-prev::before,
+  .testimonial .slick-next::before {
+    @apply hidden;
+  }
+
+  .testimonial .slick-slide > div {
+    @apply transform scale-75 transition-transform duration-700 ease-in-out;
+  }
+  
+  .testimonial .slick-center > div {
+    @apply transform scale-100;
+  }
+  /*** end testimonials section ***/ 
+
+ 
 
   /* .active-link {
     @apply bg-midnight-green
@@ -207,3 +228,5 @@
 
 
 }
+
+

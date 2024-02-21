@@ -1,7 +1,7 @@
-import About from "./About"
+import Services from "./Services"
 import Blogs from "./Blogs"
 import Contact from "./Contact"
-import Favourites from "./Favourites"
+import GraphicsDesigns from "./GraphicsDesigns"
 import Header from "./Header"
 import Projects from "./Projects"
 import Skills from "./Skills"
@@ -9,10 +9,10 @@ import Testimonials from "./Testimonials"
 
 
 export {
-    About,
+    Services,
     Blogs,
     Contact,
-    Favourites,
+    GraphicsDesigns,
     Header,
     Projects,
     Testimonials,

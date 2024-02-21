@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { client } from '../client';
 import { AppWrap } from "../wrapper";
-import { motion } from 'framer-motion';
 import { ExperienceTimeline, SkillCard } from '../components';
 
 const Skills = AppWrap(() => {

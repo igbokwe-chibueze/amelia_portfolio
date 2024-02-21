@@ -10,6 +10,7 @@ import ProjectsCard from "./ProjectsCard";
 import ServiceCard from "./ServiceCard";
 import SkillCard from "./SkillCard";
 import SocialMedia from "./SocialMedia";
+import TestimonialCard from "./TestimonialCard";
 import ThemeSwitcher from "./ThemeSwitcher";
 
 
@@ -27,6 +28,7 @@ export {
     NavigationDots,
     SocialMedia,
     ExperienceTimeline,
-    SkillCard
+    SkillCard,
+    TestimonialCard
 
 }
