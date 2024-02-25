@@ -1,4 +1,3 @@
-import { figma, react } from "../assets";
 
 export const navLinks = [
     { href: 'header', text: 'Home' },

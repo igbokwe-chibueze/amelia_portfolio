@@ -1,3 +1,4 @@
+import Alert from "./Alert";
 import ContactBtn from "./ContactBtn";
 import CustomBtn from "./CustomBtn";
 import ExperienceTimeline from "./ExperienceTimeline";
@@ -14,7 +15,6 @@ import TestimonialCard from "./TestimonialCard";
 import ThemeSwitcher from "./ThemeSwitcher";
 
 
-
 export {
     ContactBtn,
     Navbar,
@@ -29,6 +29,7 @@ export {
     SocialMedia,
     ExperienceTimeline,
     SkillCard,
-    TestimonialCard
+    TestimonialCard,
+    Alert,
 
 }

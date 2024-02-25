@@ -82,7 +82,7 @@
   }
 
   .nav-last-link {
-    @apply rounded-full bg-chartreuse-color hover:bg-[#6BC800] hover:scale-105 px-8 py-1
+    @apply rounded-full px-8 py-1 bg-chartreuse-color hover:bg-[#6BC800] hover:scale-105 transition duration-700 ease-in-out;
   }
 
   .nav-links-hover {
@@ -222,18 +222,63 @@
 
  
   /* Contact Section */ 
-  .input {
-    @apply bg-white w-full p-2 border border-gray-300 rounded-md text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 shadow;
+  /*
+    input[type="text"]:focus ~ .input-text: This part of the selector targets .input-text elements that are siblings of an input element of type text 
+    that is currently focused. When the input element of type text is focused, the styles within the curly braces 
+    are applied to the adjacent .input-text element.
+
+    input[type="text"]:not(:placeholder-shown) ~ .input-text: This part of the selector targets .input-text elements 
+    that are siblings of an input element of type text that has content typed into it (i.e., not in the placeholder state). 
+    When the input element of type text is not in the placeholder state (i.e., it has content), 
+    the styles within the curly braces are applied to the adjacent .input-text element.
+  */
+
+  .label {
+    @apply relative my-2;
   }
 
-  .input-text {
-    @apply text-blue-500 transform scale-75;
-    transition: transform 200ms ease, text-blue-500 200ms ease; /* Add transition for smooth movement */
+  .input {
+    @apply bg-tea-green w-full px-6 py-2 border-caribbean-current border rounded-md outline-none text-sm text-caribbean-current
+    focus:border-blue-500 shadow-sm placeholder:opacity-0;
+  }
+
+  .contact-span {
+    @apply absolute flex text-sm text-caribbean-current font-medium left-5 top-2.5 px-2 transition duration-200 input-text
   }
   
-  /* Adjust position when input is focused */
-  label:focus-within .input-text {
-    @apply -translate-y-5 -translate-x-2; /* Adjust these values as needed */
+  input[type="text"]:focus ~ .input-text,
+  input[type="text"]:not(:placeholder-shown) ~ .input-text{
+    @apply text-blue-500 bg-tea-green rounded transform -translate-y-6 -translate-x-2 scale-90 transition-transform duration-500 ease-in-out;
+  }
+
+  input[type="email"]:focus ~ .input-text,
+  input[type="email"]:not(:placeholder-shown) ~ .input-text{
+    @apply text-blue-500 bg-tea-green rounded transform -translate-y-6 -translate-x-2 scale-90 transition-transform duration-500 ease-in-out;
+  }
+
+  textarea:focus ~ .input-text,
+  textarea:not(:placeholder-shown) ~ .input-text{
+    @apply text-blue-500 bg-tea-green rounded transform -translate-y-6 -translate-x-2 scale-90 transition-transform duration-500 ease-in-out;
+  }
+
+
+  /* .input2 {
+    @apply bg-white w-full py-2 px-3 border border-gray-300 rounded-md text-gray-900 text-sm 
+    focus:ring-blue-500 focus:border-blue-500 shadow;
+  } */
+  
+  .contact-cards {
+    @apply flex flex-row justify-evenly items-center mt-4 mb-2;
+  }
+  
+  .contact-card {
+    @apply w-80 h-20 flex flex-row justify-start items-center mx-4 p-4 rounded
+    hover:shadow-2xl shadow-black transition duration-700 ease-in-out;
+  }
+  
+  .contact-submit {
+    @apply mt-2 px-4 py-2 bg-white text-caribbean-current font-bold rounded border border-caribbean-current 
+    hover:bg-chartreuse-color hover:text-white transition duration-700 ease-in-out disabled:opacity-50;
   }
   /*** end contact section ***/
 
