@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 const Alert = ({ type, text }) => {
   return (
-    <div className='absolute bottom-8 right-4 flex justify-center items-center'>
+    <div className='absolute bottom-8 right-4 z-20 flex justify-center items-center'>
       <div
         className={`p-2 ${
           type === "danger" ? "bg-red-800" : "bg-blue-800"

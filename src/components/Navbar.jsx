@@ -132,8 +132,6 @@ const Navbar = () => {
                         whileHover={{scale: 1.1}}
                         src={images.ameliaLogo}
                         alt='logo'
-                        //width={90}
-                        //height={20}
                         width={120}
                         height={60}
                     />
@@ -152,7 +150,7 @@ const Navbar = () => {
                             to={link.href}
                             smooth={true}
                             duration={500}
-                            offset={-90} // Scroll additional px ( like padding )Adjust based on your layout, Should be preferable zero
+                            offset={0} // Scroll additional px ( like padding )Adjust based on your layout, Should be preferable zero
                             spy={true} //Make Link selected when scroll is at its targets position
                             activeClass="border-b border-midnight-green" //class applied when element is reached
                             className={`cursor-pointer nav-links relative group ${index === secondHalf.length - 1 ? 'nav-last-link' : ''}`}  //styles the last link of the second batch of links.
