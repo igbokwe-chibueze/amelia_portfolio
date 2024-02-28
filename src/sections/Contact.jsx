@@ -1,13 +1,15 @@
 import { useRef, useState, useEffect } from "react";
 import { AppWrap } from "../wrapper";
 import { motion } from "framer-motion";
-import { EnvelopeIcon, PhoneIcon, ChevronRightIcon } from "../constants/icons";
+import { ArrowRightIcon, EnvelopeIcon, PhoneIcon } from "../constants/icons";
 import { urlFor, client } from "../client";
 import emailjs from "@emailjs/browser";
 import useAlert from "../hooks/useAlert";
-import { Alert } from "../components";
+import { Alert, CustomBtn } from "../components";
 
 
+import Lottie from "lottie-react";
+import { deliveryVan, deliverySent } from "../assets";
 
 
 const leftSlideVariants = {
@@ -43,7 +45,7 @@ const Contact = AppWrap(() => {
   const [currentImage, setCurrentImage] = useState(0);
 
   const [contact, setcontact] = useState([]);
-
+  
   // Fetch contact data using the 'client' object on component mount
   useEffect(() => {
     // Define queries to fetch data from the 'contact' from Sanity
@@ -60,8 +62,7 @@ const Contact = AppWrap(() => {
     setForm({ ...form, [name]: value });
   };
 
-
-  const handleFocus = () => {
+ const handleFocus = () => {
     setCurrentImage(1); // Set the state to show the second image on focus
   };
 
@@ -124,13 +125,15 @@ const Contact = AppWrap(() => {
       <h2 className="head-text">
         Have a project in mind ? <span className="text-[#7700ff]">Lets build together.</span>
       </h2>
-      <div className='relative flex flex-col laptop:flex-row mt-4 mb-4'>
+      <div className='relative flex flex-col-reverse tablet:flex-row mt-6 mb-4 w-full'>
+
         {alert.show && <Alert {...alert} />}
         
+        {/* Contact Form and Cards */}
         <motion.div
           variants={leftSlideVariants}
           whileInView={leftSlideVariants.whileInView}
-          className="w-full laptop:w-1/2 px-4 laptop:px-8"
+          className="w-full tablet:w-1/2 px-4 tablet:px-8"
         >
 
           {/* Container for displaying contact cards */}
@@ -159,11 +162,13 @@ const Contact = AppWrap(() => {
             </motion.a>
           </div>
 
+          {/* Contact Form */}
           <form
             ref={formRef}
             onSubmit={handleSubmit}
             className='flex flex-col gap-4 mt-8'
           >
+            {/* Name Input */}
             <label htmlFor="name" className='label'>
               <input
                 id="name"
@@ -184,6 +189,7 @@ const Contact = AppWrap(() => {
               </span>
             </label>
 
+            {/* Email Input */}
             <label htmlFor="email" className='label'>
               <input
                 id="email"
@@ -204,7 +210,7 @@ const Contact = AppWrap(() => {
               </span>
             </label>
 
-            
+            {/* Message Textarea */}
             <label htmlFor="message" className='label'>
               <textarea
                 id="message"
@@ -225,53 +231,48 @@ const Contact = AppWrap(() => {
                 </span>
             </label>
 
-            <button
-              type='submit'
-              disabled={loading}
-              className='contact-submit'
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-            >
-              {loading ? (
-                <>
-                  {/* <SendingSVG /> */}
-                  <span>Sending...</span>
-                </>
-              ) : (
-                <>
-                  {/* <SubmitSVG /> */}
-                  <span>Submit</span>
-                </>
-              )}
-            </button>
+            {/* Submit Button */}
+            <div className="flex justify-center">
+              <CustomBtn
+                type='submit'
+                classProps={`gap-4 px-8 py-2 ${loading ? 'animate-pulse' : ''}`}
+                label={loading ? 'Sending...' : 'Submit'} 
+                backgroundColor={"bg-chartreuse-color"} 
+                borderColor={"border-1 border-midnight-green"} 
+                textColor={"text-midnight-green"}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                disabled={loading}  // Disable the button during download
+              >
+                <ArrowRightIcon 
+                  className={`w-[35px] h-[35px] text-chartreuse-color fill-midnight-green `}
+                />
+              </CustomBtn>
+            </div>
           </form>
         </motion.div>
 
+        {/* Profile Image and Animation */}
         <motion.div
           variants={rightSlideVariants}
           whileInView={rightSlideVariants.whileInView}
-          className="w-full laptop:w-1/2 flex items-center justify-center"
+          className="relative w-full h-auto"
         >
-          <div
-            className="flex flex-col justify-between items-center w-full h-full rounded-2xl gap-4"
-          >
-            <div className="bg-midnight-green rounded-2xl w-[350px] h-[390px]">
-              {contact.imgUrl ? (
-                <img 
-                  src={urlFor(contact.imgUrl)} 
-                  alt="profile_bg" 
-                  //className="object-contain z-10 tablet:-mt-14 p-0 w-[350px] h-[350px] tablet:w-[450px] tablet:h-[450px]"
-                  className="object-contain w-full h-full"
-                />
-              ) : (
-                "" // In the absence of a profile picture, leave the area blank. I can also place a temporal picture here.
-              )}
-            </div>
-            <div className="flex justify-center items-center bg-midnight-green rounded-2xl w-[350px] h-auto">
-              {currentImage === 0 && <EnvelopeIcon className="w-24 h-24 text-white" />}
-              {currentImage === 1 && <PhoneIcon className="w-24 h-24 text-white" />}
-              {currentImage === 2 && <ChevronRightIcon className="w-8 h-8 text-white" />}
-            </div>
+          <div className="bg-midnight-green rounded-2xl tablet:w-[350px] mx-4 tablet:mx-0">
+            {contact.imgUrl ? (
+              <img 
+                src={urlFor(contact.imgUrl)} 
+                alt="profile_bg"
+                className="object-contain w-full h-full"
+              />
+            ) : (
+              "" // In the absence of a profile picture, leave the area blank. I can also place a temporal picture here.
+            )}
+          </div>
+          <div className="absolute -bottom-12 right-0 left-72 hidden tablet:flex justify-end items-end w-[200px] h-[150px]">
+            {currentImage === 0 && <Lottie animationData={deliveryVan} autoplay={false} />}
+            {currentImage === 1 && <Lottie animationData={deliveryVan} autoplay={true}/>}
+            {currentImage === 2 && <Lottie animationData={deliverySent} autoplay={true} className=" flex justify-start items-end pb-8"/>}
           </div>
         </motion.div>
       </div>
