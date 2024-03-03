@@ -74,27 +74,27 @@ const TestimonialCard = ({testimonials}) => {
     };
 
   return (
-    <div className='max-w-6xl testimonial'>
-        <Slider {...settings}>
-            {testimonials.map((testimonial) => (
-                <div key={testimonial.id}>
-                    <div className='bg-caribbean-current flex flex-col items-center rounded-md my-4 px-4 pb-2 shadow-lg shadow-gray-500 text-tea-green'>
-                        <img
-                        src={urlFor(testimonial.imgurl)}
-                            alt='customer'
-                            className='rounded-full object-cover w-32 h-32 -mt-4'
-                        />
-                        <p className='mt-2 max-w-sm text-center info-text'>{testimonial.feedback}</p>
-                        <div className='flex justify-center items-center'>
-                            <p className='text-xl'>({testimonial.company})</p>
-                        </div>
-                        <h3 className='mt-1 text-3xl text-center font-bold text-chartreuse-color'>
-                            {testimonial.name}
-                        </h3>
-                    </div>
-                </div>
-            ))}
-        </Slider>
+    <div className='max-w-64 tablet:max-w-5xl testimonial'>
+      <Slider {...settings}>
+        {testimonials.map((testimonial) => (
+          <div key={testimonial.id}>
+            <div className='bg-caribbean-current flex flex-col items-center rounded-md my-4 px-4 pb-2 shadow-lg shadow-gray-500 text-tea-green'>
+              <img
+              src={urlFor(testimonial.imgurl)}
+                  alt='customer'
+                  className='rounded-full object-cover w-32 h-32 -mt-4'
+              />
+              <p className='mt-2 max-w-sm text-center info-text'>{testimonial.feedback}</p>
+              <div className='flex justify-center items-center'>
+                  <p className='text-xl'>({testimonial.company})</p>
+              </div>
+              <h3 className='mt-1 text-3xl text-center font-bold text-chartreuse-color'>
+                  {testimonial.name}
+              </h3>
+            </div>
+          </div>
+        ))}
+      </Slider>
     </div>
   )
 }

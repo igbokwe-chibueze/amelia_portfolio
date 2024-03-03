@@ -128,7 +128,7 @@ const Header = () => {
       <div className="bg-midnight-green rounded-lg mb-8">
         <div className="bg-caribbean-current text-tea-green rounded-t-lg p-3 tablet:p-4">
           {/* <ParallaxText baseVelocity={1}>UI/UX DESIGNER + GRAPHICS DESIGNER + PROJECT MANAGER +</ParallaxText> */}
-          <ParallaxText baseVelocity={1}>{header.parallaxText}</ParallaxText>
+          <ParallaxText baseVelocity={2} clamp={true}>{header.parallaxText}</ParallaxText>
         </div>
 
         <div className="grid grid-cols-1 tablet:grid-cols-3 gap-4 mt-4 mx-4">

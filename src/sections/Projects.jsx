@@ -82,7 +82,7 @@ const Projects = AppWrap(() => {
     <section>
       {/* Heading for the Projects section */}
       <h2 className="head-text">
-        Crafting Excellence: <span className="text-[#7700ff]">Explore What I Offer.</span>
+        Crafting Excellence: <span className="text-electric-indigo">Explore What I Offer.</span>
       </h2>
 
       {/* Render the Projects filters */}
@@ -91,7 +91,7 @@ const Projects = AppWrap(() => {
           <div
             key={index}
             onClick={() => handleProjectsFilter(item)}
-            className={`project-filter-item p-text ${activeFilter === item ? 'bg-midnight-green text-chartreuse-color' : ''}`}
+            className={`z-10 project-filter-item p-text ${activeFilter === item ? 'bg-midnight-green text-chartreuse-color' : ''}`}
           >
             {item}
           </div>
