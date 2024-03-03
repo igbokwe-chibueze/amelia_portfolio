@@ -3,11 +3,11 @@ import { useRef } from "react";
 import { motion, useScroll, useSpring, useTransform, useMotionValue, useVelocity, useAnimationFrame } from "framer-motion";
 import { wrap } from "@motionone/utils";
 
-const ParallaxText = ({ children, baseVelocity = 100 }) => {
+const ParallaxText = ({ children, baseVelocity = 100, clamp = false }) => {
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const smoothVelocity = useSpring(useVelocity(scrollY), { damping: 100, stiffness: 100 }); //damping: affects how quickly the text reverses depending on scroll speed, the higher the better. stiffness: affects the smoothness when the text starts all over, the lower the better.
-  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], { clamp: true}); //clamp: false, reverses text on scroll, clamp: true, no reverse.
+  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], { clamp }); //clamp: false, reverses text on scroll, clamp: true, no reverse.
 
   /**
    * This is a magic wrapping for the length of the text - you
@@ -19,6 +19,14 @@ const ParallaxText = ({ children, baseVelocity = 100 }) => {
   const directionFactor = useRef(1);
   useAnimationFrame((t, delta) => {
     let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
+
+    /**
+     * This is what changes the direction of the scroll once we
+     * switch scrolling directions.
+     */
+    if (velocityFactor.get() !== 0) {
+      directionFactor.current = velocityFactor.get() > 0 ? 1 : -1;
+    }
 
     moveBy += directionFactor.current * moveBy * velocityFactor.get();
     baseX.set(baseX.get() + moveBy);

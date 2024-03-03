@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
-import { urlFor, client } from '../client';
+import { client } from '../client';
 import { AppWrap } from "../wrapper";
 import { motion } from 'framer-motion';
-import { TestimonialCard } from '../components';
-import { Tooltip } from 'react-tooltip';
+import { TestimonialCard, ParallaxText, BrandsComponent } from '../components';
 
 const Testimonials = AppWrap(() => {
 
@@ -36,40 +35,26 @@ const Testimonials = AppWrap(() => {
       </h2>
 
       {/* Render the Testimonials */}
-      <div className='mt-8'>
+      <div className='my-8 ml-8'>
         <TestimonialCard testimonials={testimonials} />
       </div>
 
       {/* Render the brand logos */}
-      <div className="flex flex-wrap justify-center items-center space-x-8 mt-20 mb-4">
+      <motion.div
+        whileInView={{ opacity: [0, 1] }}
+        transition={{ duration: 0.5, type: 'tween' }}
+        className="mt-20 mb-4 mx-2 tablet:max-w-[69rem]"
+      >
         {/* Map through the brands data to render each brand logo with a motion effect */}
-        {brands.map((brand) => (
-          <motion.div
-            whileInView={{ opacity: [0, 1] }}
-            transition={{ duration: 0.5, type: 'tween' }}
+        <ParallaxText baseVelocity={-2} clamp={false}>
+          <BrandsComponent brands={brands}/>
+        </ParallaxText>
+        <ParallaxText baseVelocity={2} clamp={false}>
+          <BrandsComponent brands={brands}/>
+        </ParallaxText>
+        
+      </motion.div>
 
-            key={brand._id}
-            className="w-36 tablet:w-48 wide-desktop:w-72"
-
-            data-tooltip-id="skillsTooltip"
-            data-tooltip-content={brand.name}
-            data-tooltip-place="top"
-          >
-            {/* Display the image of the current brand */}
-            <a href={ brand.brandlink} target="_blank" rel="noopener noreferrer" className="">
-              <img
-                src={urlFor(brand.imgUrl)}
-                alt={brand.name}
-                className="w-full h-auto object-cover filter grayscale hover:grayscale-0"
-              />
-              <Tooltip 
-                id="skillsTooltip"
-                style={{ backgroundColor: "#88FF00", color: "#006B7A" }}
-              />
-            </a>
-          </motion.div>
-        ))}
-      </div>
 
     </section>
   )

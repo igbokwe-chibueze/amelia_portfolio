@@ -5,7 +5,7 @@ import { ArrowRightIcon, EnvelopeIcon, PhoneIcon } from "../constants/icons";
 import { urlFor, client } from "../client";
 import emailjs from "@emailjs/browser";
 import useAlert from "../hooks/useAlert";
-import { Alert, CustomBtn } from "../components";
+import { Alert, CustomBtn} from "../components";
 
 
 import Lottie from "lottie-react";
@@ -254,9 +254,9 @@ const Contact = AppWrap(() => {
 
         {/* Profile Image and Animation */}
         <motion.div
-          variants={rightSlideVariants}
-          whileInView={rightSlideVariants.whileInView}
-          className="relative w-full h-auto"
+          variants={window.innerWidth > 639 ? rightSlideVariants : leftSlideVariants}
+          whileInView="whileInView"
+          className="relative w-full tablet:w-auto h-auto"
         >
           <div className="bg-midnight-green rounded-2xl tablet:w-[350px] mx-4 tablet:mx-0">
             {contact.imgUrl ? (

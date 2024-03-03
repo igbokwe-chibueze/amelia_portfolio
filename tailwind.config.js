@@ -14,7 +14,9 @@ export default {
         'caribbean-current': '#006B7A',
         'chartreuse-color': '#88FF00',
         'tea-green': '#E4FFC4',
+
         'platinum-gray': '#E4E4E4',
+        'electric-indigo': '#7700FF',
       },
       screens: {
         'tablet': '640px',

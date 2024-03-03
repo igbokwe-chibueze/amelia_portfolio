@@ -32,24 +32,16 @@ const Skills = AppWrap(() => {
       <h2 className="head-text">Skills & Experiences</h2>
 
       <div>
-        <div className='mt-8'>
+        <div className='mt-8 mx-10 w-auto flex justify-center tablet:justify-start items-start flex-wrap tablet:px-28'>
           <h3 className='title-text'>My Skills</h3>
-
-          <div>
-            <SkillCard skills={skills} />
-          </div>
+          <SkillCard skills={skills} />
         </div>
 
-        <div className='mt-24'>
-          <h3 className='title-text'>Experience</h3>
-
-          <div className='my-4'>
-            <ExperienceTimeline experiences={experiences} />
-          </div>
+        <div className='mt-8'>
+          <h3 className='title-text text-center'>Experience</h3>
+          <ExperienceTimeline experiences={experiences} />
         </div>
       </div>
-
-
     </section>
   )
 }, 'skills', 'bg-tea-green');

@@ -90,7 +90,7 @@ const Menu = () => {
       <div className='lg:hidden'>
         <button type="button"
           onClick={() => setMenuToggle(!menuToggle)}  // Toggle the 'toggle' state when the icon is clicked.
-          className="relative z-40 hamburgerBtn"
+          className="relative z-50 hamburgerBtn"
         >
           {/* Hamburger svg & close svg*/}
           {menuToggle ? (
@@ -112,7 +112,7 @@ const Menu = () => {
         <button type="button"
             onClick={() => setMenuToggle(false)}
             tabIndex={-1} // Ensures this button is not accessible by keyboard
-            className="fixed inset-0 z-20 bg-transparent h-screen w-screen cursor-default"
+            className="fixed inset-0 z-40 bg-transparent h-screen w-screen cursor-default"
         >
         </button> 
       </div>
@@ -128,7 +128,7 @@ const Menu = () => {
           exit="exit"
           className={`${
                 !menuToggle ? "hidden" : "block"  // Conditionally display the menu based on 'toggle' state.
-            } absolute right-0 top-0 mt-0 w-4/5 tablet:w-1/2 h-screen pt-2 pb-4 z-20 backdrop-blur-xl bg-caribbean-current/90 shadow-lg`}
+            } absolute right-0 top-0 mt-0 w-4/5 tablet:w-1/2 h-screen pt-2 pb-4 z-40 backdrop-blur-xl bg-caribbean-current/90 shadow-lg`}
         >
           <motion.div 
             className='flex-1 flex-col justify-center items-center w-5/6 mt-12 ml-16'
