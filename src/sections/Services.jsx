@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { ServiceCard } from "../components";
 import { urlFor, client } from '../client';
-import { AppWrap } from '../wrapper';
+import { AppWrap, MotionWrap } from '../wrapper';
 
 
 
-const Services = AppWrap(() => {
+const Services = MotionWrap(AppWrap(() => {
 
   const [services, setServices] = useState([]);
 
@@ -20,14 +20,14 @@ const Services = AppWrap(() => {
   }, []);
 
   return (
-    <section>
+    <section className='w-full min-h-screen'>
       {/* Heading for the Services section */}
       <h2 className="head-text">
         Crafting Excellence: <span className="text-[#7700ff]">Explore What I Offer.</span>
       </h2>
 
       {/* Render a list of the first four services using 'map' function */}
-      <div className="flex justify-center tablet:justify-start items-start flex-wrap mt-8 tablet:px-28">
+      <div className="flex justify-center tablet:justify-start items-start flex-wrap mt-8 tablet:px-8">
         {services.slice(0, 4).map((service, index) => (
           <ServiceCard key={service.title + index} image={urlFor(service.imgUrl)} {...service} />
         ))}
@@ -35,6 +35,6 @@ const Services = AppWrap(() => {
 
     </section>
   )
-}, 'services', 'bg-tea-green');
+}, 'services', 'bg-tea-green'));
 
 export default Services

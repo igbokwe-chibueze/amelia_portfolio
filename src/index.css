@@ -55,7 +55,7 @@
   }
 
   .navbar-container{
-    @apply flex justify-between items-center;
+    @apply flex justify-between items-center max-w-80 tablet:max-w-screen-2xl;
   }
 
   .hamburgerBtn{
@@ -128,7 +128,7 @@
   }
 
   .project-container {
-    @apply flex flex-wrap justify-center items-start
+    @apply flex flex-wrap justify-center tablet:justify-start items-start
   }
   /*** end projects page ***/
 
@@ -200,6 +200,20 @@
   /*** end skills page ***/ 
 
 
+/* Graphics Design Section */ 
+  .graphics-design .slick-arrow.slick-prev,
+  .graphics-design .slick-arrow.slick-next {
+    @apply w-10 h-10 flex items-center justify-center z-10 rounded-full p-2 shadow-2xl shadow-gray-500 tablet:bg-chartreuse-color hover:bg-[#6BC800] tablet:text-midnight-green;
+  }
+
+  .graphics-design .slick-prev::before,
+  .graphics-design .slick-next::before {
+    @apply hidden;
+  }
+/*** end graphics design section ***/ 
+ 
+
+
   /* Testimonials Section */ 
   .testimonial .slick-arrow.slick-prev,
   .testimonial .slick-arrow.slick-next {
@@ -220,7 +234,19 @@
   }
   /*** end testimonials section ***/ 
 
- 
+
+  /* BlogsCard Component*/ 
+  .blog-card {
+    @apply flex justify-start items-start flex-col w-60 wide-desktop:w-96 rounded-lg bg-white 
+    m-4 wide-desktop:my-8 wide-desktop:mx-16 p-2 wide-desktop:p-5
+  }
+
+  .blog-card-badge {
+    @apply absolute flex items-center top-0 ml-2 p-2 mt-4 gap-1 bg-white/75 rounded-full text-xs text-gray-600;
+  }
+  /*** end blogs card component ***/ 
+
+
   /* Contact Section */ 
   /*
     input[type="text"]:focus ~ .input-text: This part of the selector targets .input-text elements that are siblings of an input element of type text 
