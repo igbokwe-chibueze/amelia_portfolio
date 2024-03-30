@@ -21,7 +21,7 @@ const buttonVariants = {
 
 const textSlideVariants = {
   whileInView: {
-    x: [-100, 0],
+    x: [-20, 0],
     opacity: [0, 1],
     // Animation transition properties
     transition: {
@@ -34,6 +34,10 @@ const textSlideVariants = {
 const textChildrenVarients = {
   whileInView: {
     x: [-100, 0],
+    opacity: [0, 1]
+  },
+  whileInViewMobile: {
+    x: [-20, 0],
     opacity: [0, 1]
   },
 }
@@ -127,7 +131,6 @@ const Header = () => {
     <section id='header' className="w-full min-h-screen pt-16 px-2">
       <div className="bg-midnight-green rounded-lg mb-8">
         <div className="bg-caribbean-current text-tea-green rounded-t-lg p-3 tablet:p-4">
-          {/* <ParallaxText baseVelocity={1}>UI/UX DESIGNER + GRAPHICS DESIGNER + PROJECT MANAGER +</ParallaxText> */}
           <ParallaxText baseVelocity={2} clamp={true}>{header.parallaxText}</ParallaxText>
         </div>
 
@@ -156,7 +159,7 @@ const Header = () => {
               
               <motion.div
                 variants={textChildrenVarients}
-                whileInView={textChildrenVarients.whileInView}
+                whileInView={window.innerWidth > 639 ? textChildrenVarients.whileInView : textChildrenVarients.whileInViewMobile }
                 transition={{ delay:1, duration: 1 }}
                 className="flex flex-col gap-5"
               >
@@ -167,7 +170,7 @@ const Header = () => {
 
               <motion.div
                 variants={textChildrenVarients}
-                whileInView={textChildrenVarients.whileInView}
+                whileInView={window.innerWidth > 639 ? textChildrenVarients.whileInView : textChildrenVarients.whileInViewMobile }
                 transition={{ delay:1, duration: 1.4 }} 
                 className='flex flex-col gap-5'
               >
@@ -232,7 +235,7 @@ const Header = () => {
               <motion.div
                 variants={hoverScaleVariants}
                 whileHover={hoverScaleVariants.hover}
-                className="w-20 h-20 tablet:w-28 tablet:h-28 tablet:ml-10 hearder-icon-circles"
+                className="w-20 h-20 tablet:w-28 tablet:h-28 tablet:ml-10 hearder-icon-circles z-10"
               >
                 <img src={images.redux} alt="Redux" className="object-cover w-full h-full" />
               </motion.div>
@@ -258,12 +261,10 @@ const Header = () => {
             className='-mt-4 tablet:-mt-14 z-20'
           >
             <CustomBtn
-              classProps={`gap-4 px-8 py-2 ${downloading ? 'rotate-12' : ''}`}
-              label={downloading ? 'Downloading...' : 'Download CV'} 
-              backgroundColor={"bg-chartreuse-color"} 
-              borderColor={"border-1 border-midnight-green"} 
-              textColor={"text-midnight-green"}
-              onClick={handleDownloadClick}
+              classProps={`${downloading ? 'rotate-12' : ''} px-8 py-2`}
+              label={downloading ? 'Downloading...' : 'Download CV'}
+              btnType="button"
+              onBtnClick={handleDownloadClick}
               disabled={downloading}  // Disable the button during download
             >
               <ArrowDownIcon 

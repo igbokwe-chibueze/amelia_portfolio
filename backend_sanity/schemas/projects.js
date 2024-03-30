@@ -12,7 +12,7 @@ export default {
     {
       name: 'description',
       title: 'Description',
-      type: 'string',
+      type: 'text',
     },
     {
       name: 'projectLink',
@@ -43,13 +43,42 @@ export default {
       type:'array',
       of: [
         {
-          name:'tag',
-          title:'Tag',
+          name: 'tags',
+          title: 'Tags(Ensure the "all" tag is always present)',
           type:'string',
-          description: 'Enter tag in lowercase',
-          validation: Rule => Rule.lowercase().error('Tags must be in lowercase')
+          options: {
+            list: [
+              { 
+                title: 'All', 
+                value: 'all'
+              },
+              { 
+                title: 'Web Designs', 
+                value: 'webdesigns'
+              },
+              { 
+                title: 'Mobile Designs', 
+                value: 'mobiledesigns'
+              },
+              { 
+                title: 'Landing Pages', 
+                value: 'landingpages'
+              },
+              { 
+                title: 'Game Designs', 
+                value: 'gamedesigns'
+              },
+            ],
+          },
         },
       ]
     },
+    {
+      name:'favourite',
+      title:'Display as favourite',
+      type: 'boolean',
+      description: 'If true, this would be displayed in the front page',
+      initialValue: false
+  },
   ],
 };

@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { AppWrap } from "../wrapper";
+import { AppWrap, MotionWrap } from "../wrapper";
 import { motion } from "framer-motion";
 import { ArrowRightIcon, EnvelopeIcon, PhoneIcon } from "../constants/icons";
 import { urlFor, client } from "../client";
@@ -37,7 +37,7 @@ const rightSlideVariants = {
 };
 
 
-const Contact = AppWrap(() => {
+const Contact = MotionWrap(AppWrap(() => {
   const formRef = useRef();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const { alert, showAlert, hideAlert } = useAlert();
@@ -133,7 +133,7 @@ const Contact = AppWrap(() => {
         <motion.div
           variants={leftSlideVariants}
           whileInView={leftSlideVariants.whileInView}
-          className="w-full tablet:w-1/2 px-4 tablet:px-8"
+          className="w-full tablet:w-1/2 px-4"
         >
 
           {/* Container for displaying contact cards */}
@@ -232,22 +232,28 @@ const Contact = AppWrap(() => {
             </label>
 
             {/* Submit Button */}
-            <div className="flex justify-center">
-              <CustomBtn
-                type='submit'
-                classProps={`gap-4 px-8 py-2 ${loading ? 'animate-pulse' : ''}`}
-                label={loading ? 'Sending...' : 'Submit'} 
-                backgroundColor={"bg-chartreuse-color"} 
-                borderColor={"border-1 border-midnight-green"} 
-                textColor={"text-midnight-green"}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                disabled={loading}  // Disable the button during download
+            <div className="w-full flex justify-center">
+              <motion.div 
+                initial={{ scale: 1 }}
+                whileTap={{ scale: 0.3 }}
+                className="w-fit"
               >
-                <ArrowRightIcon 
-                  className={`w-[35px] h-[35px] text-chartreuse-color fill-midnight-green `}
-                />
-              </CustomBtn>
+                <CustomBtn
+                  btnType='submit'
+                  classProps={`gap-4 px-8 py-2 ${loading ? 'animate-pulse' : ''}`}
+                  label={loading ? 'Sending...' : 'Submit'} 
+                  backgroundColor={"bg-chartreuse-color"} 
+                  borderColor={"border-1 border-midnight-green"} 
+                  textColor={"text-midnight-green"}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                  disabled={loading}  // Disable the button during download
+                >
+                  <ArrowRightIcon 
+                    className={`w-[35px] h-[35px] text-chartreuse-color fill-midnight-green `}
+                  />
+                </CustomBtn>
+              </motion.div>
             </div>
           </form>
         </motion.div>
@@ -278,6 +284,6 @@ const Contact = AppWrap(() => {
       </div>
     </section>
   )
-}, 'contact', 'bg-tea-green');
+}, 'contact', 'bg-tea-green'));
 
 export default Contact

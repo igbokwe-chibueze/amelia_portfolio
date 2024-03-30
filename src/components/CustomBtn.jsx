@@ -1,29 +1,41 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
+
 const CustomBtn = ({
   classProps,
   children,
   label,
+  showLabelOnHover,
   iconURL,
   backgroundColor,
   textColor,
   borderColor,
-  fullWidth,
-  onClick,
+  btnType,
+  onBtnClick,
   disabled,
 }) => {
+  const handleClick = () => {
+    if (onBtnClick && !disabled) {
+      onBtnClick();
+    }
+  };
+
   return (
     <button
-      className={`flex justify-center items-center border text-lg tablet:text-2xl font-bold leading-none 
+      className={`z-20 flex justify-center items-center border gap-4 group
+      text-lg tablet:text-2xl font-bold leading-none rounded-full
       hover:bg-[#6BC800] disabled:bg-[#81926D] disabled:opacity-90 disabled:cursor-not-allowed ${classProps}
       ${
         backgroundColor
           ? `${backgroundColor} ${textColor} ${borderColor}`
-          : "bg-black text-white border-black"
-      } rounded-full ${fullWidth && "w-full"}`}
-      onClick={onClick}
+          : "bg-chartreuse-color text-midnight-green border-midnight-green"
+      }`}
+      type={btnType || "button"}
+      onClick={handleClick}
       disabled={disabled}
     >
-      {label}
+      <div className={showLabelOnHover ? "hidden group-hover:flex" : ""}>
+        {label || "See More"}
+      </div>
 
       {/* Use the iconUrl if i want to use an svg icon */}
       {iconURL && (
@@ -38,6 +50,27 @@ const CustomBtn = ({
       {children}
     </button>
   );
+};
+
+CustomBtn.propTypes = {
+  classProps: PropTypes.string,
+  children: PropTypes.node,
+  label: PropTypes.string,
+  showLabelOnHover: PropTypes.bool,
+  iconURL: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  textColor: PropTypes.string,
+  borderColor: PropTypes.string,
+  btnType: PropTypes.oneOf(['button', 'submit', 'reset']),
+  onBtnClick: PropTypes.func,
+  disabled: PropTypes.bool,
+};
+
+CustomBtn.defaultProps = {
+  classProps: '',
+  showLabelOnHover: false,
+  btnType: 'button',
+  disabled: false,
 };
 
 export default CustomBtn;

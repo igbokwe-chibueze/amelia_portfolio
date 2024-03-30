@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { urlFor, client } from '../client';
-import { AppWrap } from "../wrapper";
+import { AppWrap, MotionWrap } from "../wrapper";
 import { motion } from 'framer-motion';
-import { ProjectsCard } from '../components';
+import { CustomBtn, ProjectsCard } from '../components';
+import { ArrowRightIcon } from '../constants/icons';
 
-const Projects = AppWrap(() => {
+const Projects = MotionWrap(AppWrap(() => {
   const [projects, setProjects] = useState([]); // Stores all projects fetched from the 'projects' collection
   const [filterProject, setFilterProject] = useState([]); // Stores filtered projects based on the active filter
   const [activeFilter, setActiveFilter] = useState('all'); // Tracks the currently active filter
@@ -14,7 +15,7 @@ const Projects = AppWrap(() => {
   const [filterOptions, setFilterOptions] = useState([]);
 
   useEffect(() => {
-    const query = '*[_type == "projects"]'; // Sanity query to fetch all projects
+    const query = '*[_type == "projects" && favourite == true]'; // Sanity query to fetch all projects
 
     // Fetch projects using the 'client' object from 'client.js'
     client.fetch(query).then((data) => {
@@ -79,7 +80,7 @@ const Projects = AppWrap(() => {
   };
 
   return (
-    <section>
+    <section className='w-full min-h-screen'>
       {/* Heading for the Projects section */}
       <h2 className="head-text">
         Crafting Excellence: <span className="text-electric-indigo">Explore What I Offer.</span>
@@ -98,20 +99,34 @@ const Projects = AppWrap(() => {
         ))}
       </div>
 
-      {/* Render the project portfolio using 'motion' for animations */}
       <motion.div
         animate={animateCard}
         transition={{ duration: 0.5, delayChildren: 0.5 }}
-        className="project-container"
       >
-        {/* Map through filtered projects and render individual project items */}
-        {filterProject.map((project, index) => (
-          <ProjectsCard key={project.title + index} image={urlFor(project.imgUrl)} {...project} tag={project.tags}/>
-        ))}
-      </motion.div>
+        <div className="mt-4 flex justify-center items-center w-full">
+          <CustomBtn
+            classProps={"px-8 py-2"}
+            btnType="button"
+            onBtnClick={''}
+          >
+            <ArrowRightIcon
+              className="w-[50px] h-[30px] text-chartreuse-color fill-midnight-green"
+            />
+          </CustomBtn>
+        </div>
 
+        {/* Render the project portfolio using 'motion' for animations */}
+        <motion.div
+          className="project-container"
+        >
+          {/* Map through filtered projects and render individual project items */}
+          {filterProject.map((project, index) => (
+            <ProjectsCard key={project.title + index} image={urlFor(project.imgUrl)} {...project} tags={project.tags}/>
+          ))}
+        </motion.div>
+      </motion.div>
     </section>
   )
-}, 'projects');
+}, 'projects'));
 
 export default Projects

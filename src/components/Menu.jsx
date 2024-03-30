@@ -4,7 +4,7 @@ import { HamburgerIcon, CloseIcon, TwitterIcon, InstagramIcon } from '../constan
 import { navLinks } from '../constants/data';
 import ThemeSwitcher from './ThemeSwitcher';
 import { Link } from "react-scroll";
-import ContactBtn from './ContactBtn';
+import CustomBtn from './CustomBtn';
 
 
 
@@ -139,7 +139,7 @@ const Menu = () => {
                 to={link.href}
                 smooth={true}
                 duration={500}
-                offset={-90} // Scroll additional px ( like padding )Adjust based on your layout, Should be preferable zero
+                offset={0} // Scroll additional px ( like padding )Adjust based on your layout, Should be preferable zero
                 spy={true} //Make Link selected when scroll is at its targets position
                 activeClass="text-chartreuse-color" //class applied when element is reached//class applied when element is reached
                 className="cursor-pointer menu-links"
@@ -173,35 +173,62 @@ const Menu = () => {
               </motion.div>
 
               <div className="flex items-center gap-2">
-                <ContactBtn 
-                  text="Twitter" 
+                <CustomBtn
+                  classProps={'flex-row-reverse px-1 py-1 gap-1 rounded-lg hover:bg-blue-700 hover:px-2'}
+                  label="Twitter"
+                  showLabelOnHover="true"
                   backgroundColor={"bg-blue-700"} 
-                  borderColor={"border-1 border-gray-500"} 
-                  textColor={"text-black"}
-                  onClick={() => {setMenuToggle(false); window.open("https://twitter.com/Amelia_olu")}}
+                  borderColor={"border-gray-500"} 
+                  textColor={"text-white"}
+                  btnType="button"
+                  //onBtnClick={() => {setMenuToggle(false); window.open("https://twitter.com/Amelia_olu")}}
+                  onBtnClick={() => {
+                    setTimeout(() => {
+                      setMenuToggle(false); 
+                      window.open("https://twitter.com/Amelia_olu");
+                    }, 1000); // Delay in milliseconds (e.g., 1000ms = 1 second)
+                  }}
                 >
                   <TwitterIcon className={"w-5 p-0.5"}/>
-                </ContactBtn>
+                </CustomBtn>
 
-                <ContactBtn 
-                  text="Instagram" 
+                <CustomBtn
+                  classProps={'flex-row-reverse px-1 py-1 gap-1 rounded-lg hover:bg-rose-700 hover:px-2'}
+                  label="Instagram"
+                  showLabelOnHover="true"
                   backgroundColor={"bg-rose-700"} 
-                  borderColor={"border-1 border-gray-500"} 
-                  textColor={"text-black"}
-                  onClick={() => {setMenuToggle(false); window.open("https://www.instagram.com/amelia_olufowobi/")}}
+                  borderColor={"border-gray-500"} 
+                  textColor={"text-white"}
+                  btnType="button"
+                  //onBtnClick={() => {setMenuToggle(false); window.open("https://twitter.com/Amelia_olu")}}
+                  onBtnClick={() => {
+                    setTimeout(() => {
+                      setMenuToggle(false); 
+                      window.open("https://www.instagram.com/amelia_olufowobi/");
+                    }, 1000); // Delay in milliseconds (e.g., 1000ms = 1 second)
+                  }}
                 >
                   <InstagramIcon className={"w-5 p-0.5"}/>
-                </ContactBtn>
+                </CustomBtn>
 
-                <ContactBtn 
-                  text="Twitter" 
+                <CustomBtn
+                  classProps={'flex-row-reverse px-1 py-1 gap-1 rounded-lg hover:bg-blue-700 hover:px-2'}
+                  label="Twitter"
+                  showLabelOnHover="true"
                   backgroundColor={"bg-blue-700"} 
-                  borderColor={"border-1 border-gray-500"} 
-                  textColor={"text-black"}
-                  onClick={() => {setMenuToggle(false); window.open("https://twitter.com/Amelia_olu")}}
+                  borderColor={"border-gray-500"} 
+                  textColor={"text-white"}
+                  btnType="button"
+                  //onBtnClick={() => {setMenuToggle(false); window.open("https://twitter.com/Amelia_olu")}}
+                  onBtnClick={() => {
+                    setTimeout(() => {
+                      setMenuToggle(false); 
+                      window.open("https://twitter.com/Amelia_olu");
+                    }, 1000); // Delay in milliseconds (e.g., 1000ms = 1 second)
+                  }}
                 >
                   <TwitterIcon className={"w-5 p-0.5"}/>
-                </ContactBtn>
+                </CustomBtn>
               </div>
             </motion.div>
           </div>

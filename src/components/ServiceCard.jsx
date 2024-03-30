@@ -31,6 +31,7 @@ const ServiceCard = ({ image, title, description }) => {
     <motion.div
       variants={scaleVariants} // Animation variants for scale effect
       whileInView={scaleVariants.whileInView}
+      viewport={window.innerWidth > 639 ? { once: false } : { once: true }}
       className="service-card"
     >
       <motion.div

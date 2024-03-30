@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
 import { client } from '../client';
-import { AppWrap } from "../wrapper";
+import { AppWrap, MotionWrap } from "../wrapper";
 import { motion } from 'framer-motion';
 import { TestimonialCard, ParallaxText, BrandsComponent } from '../components';
 
-const Testimonials = AppWrap(() => {
+const Testimonials = MotionWrap(AppWrap(() => {
 
   const [testimonials, setTestimonials] = useState([]);
   const [brands, setBrands] = useState([]);
@@ -58,6 +58,6 @@ const Testimonials = AppWrap(() => {
 
     </section>
   )
-}, 'testimonials', 'bg-tea-green');
+}, 'testimonials', 'bg-tea-green'));
 
 export default Testimonials
