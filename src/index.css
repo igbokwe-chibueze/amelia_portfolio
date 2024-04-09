@@ -308,11 +308,11 @@
   }
   
   .contact-cards {
-    @apply flex flex-col tablet:flex-row justify-evenly items-center gap-y-4 tablet:gap-y-0 mt-4 tablet:mt-0 mb-2;
+    @apply flex flex-col tablet:flex-row justify-evenly items-center gap-y-4 tablet:gap-y-0 mt-4 tablet:mt-0 mb-2 tablet:space-x-4;
   }
   
   .contact-card {
-    @apply w-full tablet:w-80 h-20 tablet:h-20 flex flex-row justify-start items-center mx-4 p-4 rounded lg:mb-0 lg:mr-4
+    @apply w-full tablet:w-80 h-20 tablet:h-20 flex flex-row justify-start items-center p-4 rounded
     hover:shadow-2xl shadow-black transition duration-700 ease-in-out;
   }
   /*** end contact section ***/
