@@ -102,8 +102,21 @@
 
 
   /* Header Page */
+  /* The z-10 is just to prevent the circle from being behind the profile image, so i can hover over it. */
   .hearder-icon-circles {
-    @apply rounded-full p-3 bg-chartreuse-color border-4 border-tea-green shadow-md shadow-tea-green/40
+    @apply z-10 rounded-full p-3 bg-chartreuse-color border-4 border-tea-green shadow-md shadow-tea-green/40
+  }
+
+  .header-icon-0 {
+    @apply w-16 h-16 tablet:w-24 tablet:h-24 -mt-9 tablet:-mt-0 tablet:-ml-14
+  }
+
+  .header-icon-1 {
+    @apply w-20 h-20 tablet:w-28 tablet:h-28 tablet:ml-10
+  }
+
+  .header-icon-2 {
+    @apply w-16 h-16 tablet:w-20 tablet:h-20 -mt-10 tablet:-mt-0 tablet:-ml-8
   }
   /*** end header page ***/
 

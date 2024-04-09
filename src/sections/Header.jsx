@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { images } from '../constants';
 import { CustomBtn, ParallaxText } from '../components';
 import { ArrowDownIcon } from '../constants/icons';
 import { motion } from 'framer-motion';
@@ -83,6 +82,13 @@ const Header = () => {
     });
 
   }, []);
+
+  const iconIndex = {
+    0 : 'w-16 h-16 tablet:w-24 tablet:h-24 -mt-9 tablet:-mt-0 tablet:-ml-14',
+    1 : 'w-20 h-20 tablet:w-28 tablet:h-28 tablet:ml-10',
+    2 : 'w-16 h-16 tablet:w-20 tablet:h-20 -mt-10 tablet:-mt-0 tablet:-ml-8',
+    3 : 'w-16 h-16 tablet:w-20 tablet:h-20 -mt-10 tablet:-mt-0 tablet:-ml-8',
+  };
 
   const [downloading, setDownloading] = useState(false);
 
@@ -221,33 +227,22 @@ const Header = () => {
               className='flex tablet:flex-col justify-between items-center 
               tablet:items-start tablet:space-y-12 pb-4 tablet:pb-0 -mt-2 tablet:-mt-0'
             >
-              {/* First Circle */}
-              <motion.div
-                variants={hoverScaleVariants}
-                whileHover={hoverScaleVariants.hover}
-                //The z-10 is just to prevent the circle from being behind the profile image, so i can hover over it.
-                className="w-16 h-16 tablet:w-24 tablet:h-24 -mt-9 tablet:-mt-0 tablet:-ml-14 hearder-icon-circles z-10"
-              >
-                <img src={images.flutter} alt="Flutter" className="object-cover w-full h-full" />
-              </motion.div>
+              {header.bestTools && header.bestTools.slice(0, 3).map((bestTool, index) => (
+                <motion.div
+                    key={index}
+                    variants={hoverScaleVariants}
+                    whileHover={hoverScaleVariants.hover}
+                    className={`hearder-icon-circles header${iconIndex[index]}`}
+                >
+                    <img
+                        key={index}
+                        src={urlFor(bestTool).url()}
+                        alt={`Image ${index}`}
+                        className="object-cover rounded-2xl w-full h-full"
+                    />
+                </motion.div>
+              ))}
 
-              {/* Second Circle */}
-              <motion.div
-                variants={hoverScaleVariants}
-                whileHover={hoverScaleVariants.hover}
-                className="w-20 h-20 tablet:w-28 tablet:h-28 tablet:ml-10 hearder-icon-circles z-10"
-              >
-                <img src={images.redux} alt="Redux" className="object-cover w-full h-full" />
-              </motion.div>
-
-              {/* Third Circle */}
-              <motion.div 
-                variants={hoverScaleVariants}
-                whileHover={hoverScaleVariants.hover}
-                className="w-16 h-16 tablet:w-20 tablet:h-20 -mt-10 tablet:-mt-0 tablet:-ml-8 hearder-icon-circles z-10"
-              >
-                <img src={images.sass} alt="Sass" className="object-cover w-full h-full" />
-              </motion.div>
             </motion.div>
           </div>
         </div>

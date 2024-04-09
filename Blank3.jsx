@@ -1,289 +1,284 @@
-import { useRef, useState, useEffect } from "react";
-import { AppWrap, MotionWrap } from "../wrapper";
-import { motion } from "framer-motion";
-import { ArrowRightIcon, EnvelopeIcon, PhoneIcon } from "../constants/icons";
-import { urlFor, client } from "../client";
-import emailjs from "@emailjs/browser";
-import useAlert from "../hooks/useAlert";
-import { Alert, CustomBtn} from "../components";
+import { useState, useEffect } from 'react';
+import { images } from '../constants';
+import { CustomBtn, ParallaxText } from '../components';
+import { ArrowDownIcon } from '../constants/icons';
+import { motion } from 'framer-motion';
+import Typewriter from 'typewriter-effect';
+import { urlFor, client } from '../client';
 
+const buttonVariants = {
+  rest: {
+    rotate: -12,
+  },
+  hover: {
+    rotate: 0,
+    scale: 1.1,
+    transition: {
+      scale: { duration: 0.3, repeat: Infinity, repeatType: 'reverse' },
+    },
+  },
+};
 
-import Lottie from "lottie-react";
-import { deliveryVan, deliverySent } from "../assets";
+const textSlideVariants = {
+  whileInView: {
+    x: [-20, 0],
+    opacity: [0, 1],
+    // Animation transition properties
+    transition: {
+      duration: 1.2, // Animation duration in seconds
+      ease: 'easeInOut',
+    },
+  },
+};
 
-
-const leftSlideVariants = {
+const textChildrenVarients = {
   whileInView: {
     x: [-100, 0],
-    opacity: [0, 1],
-    // Animation transition properties
-    transition: {
-      duration: 1.2, // Animation duration in seconds
-      ease: 'easeInOut',
-    },
+    opacity: [0, 1]
   },
-};
+  whileInViewMobile: {
+    x: [-20, 0],
+    opacity: [0, 1]
+  },
+}
 
-const rightSlideVariants = {
+// Variants for the scale animation
+const scaleVariants = {
   whileInView: {
-    x: [100, 0],
+    // Animation effect for scale and opacity from 0 to 1
+    scale: [0, 1],
     opacity: [0, 1],
     // Animation transition properties
     transition: {
-      duration: 1.2, // Animation duration in seconds
-      ease: 'easeInOut',
+      duration: 1.5, // Animation duration in seconds
+      ease: 'easeInOut', // Animation easing function
     },
   },
 };
 
+const hoverScaleVariants = {
+  rest: {
+    scale: 1,
+  },
+  hover: {
+    scale: 1.1,
+    transition: {
+      duration: 0.3,
+    },
+  },
+};
 
-const Contact = MotionWrap(AppWrap(() => {
-  const formRef = useRef();
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const { alert, showAlert, hideAlert } = useAlert();
-  const [loading, setLoading] = useState(false);
-  const [currentImage, setCurrentImage] = useState(0);
+const Header = () => {
 
-  const [contact, setcontact] = useState([]);
-  
-  // Fetch contact data using the 'client' object on component mount
+  const [header, setHeader] = useState([]);
+
+  // Fetch header data using the 'client' object on component mount
   useEffect(() => {
-    // Define queries to fetch data from the 'contact' from Sanity
-    const query = '*[_type == "contact"][0]'; // Fetch the first contact object.
+    // Define queries to fetch data from the 'header' from Sanity
+    const query = '*[_type == "header"][0]'; // Fetch the first header object.
 
-    // Fetch contact data
+    // Fetch header data
     client.fetch(query).then((data) => {
-      setcontact(data);
+      setHeader(data);
     });
 
   }, []);
 
-  const handleChange = ({ target: { name, value } }) => {
-    setForm({ ...form, [name]: value });
-  };
+  const [downloading, setDownloading] = useState(false);
 
- const handleFocus = () => {
-    setCurrentImage(1); // Set the state to show the second image on focus
-  };
+  // Function to handle the download button click
+  const handleDownloadClick = async () => {
 
-  const handleBlur = () => {
-    setCurrentImage(0); // Set the state to show the first image on blur
-  };
+    // Set the downloading state to true
+    setDownloading(true);
 
+    // Resolve the reference to get the file asset
+    const fileAsset = await client.getDocument(header.ameliaResume.asset._ref)
+    
+    // Extract the URL from the file asset
+    const resumeUrl = fileAsset.url;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setCurrentImage(2); // Set the state to show the third image on submission
+    //window.open(resumeUrl, '_blank'); // Opens the file URL in a new tab
 
-    emailjs
-      .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: contact.email,
-          from_email: form.email,
-          to_email: contact.email,
-          message: form.message,
-        },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setLoading(false);
-          showAlert({
-            show: true,
-            text: "Thank you for your message 😃",
-            type: "success",
-          });
+    // Extract the file name from the file asset
+    const resumeName = fileAsset.originalFilename;
+    
+    // Fetch the file as a blob
+    const response = await fetch(resumeUrl);
+    const blob = await response.blob();
 
-          setTimeout(() => {
-            hideAlert(false);
-            setCurrentImage(0);
-            setForm({
-              name: "",
-              email: "",
-              message: "",
-            }); // Clears the contact form back to blank.
-          }, [3000]);
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
-          showAlert({
-            show: true,
-            text: "Message failed to send 😢",
-            type: "danger",
-          });
-        }
-      );
+    // Create a temporary anchor element
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = resumeName; // Set the desired file name here
+    document.body.appendChild(link);
+
+    // Trigger a click event on the anchor element
+    link.click();
+
+    // Remove the temporary anchor element and URL object
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+
+    // Reset the downloading state after a short delay (adjust the delay as needed)
+    setTimeout(() => {
+      setDownloading(false);
+    }, 3000);
   };
 
   return (
-    <section className='w-full min-h-screen'>
-      <h2 className="head-text">
-        Have a project in mind ? <span className="text-[#7700ff]">Lets build together.</span>
-      </h2>
-      <div className='relative flex flex-col-reverse tablet:flex-row mt-6 mb-4 w-full'>
+    <section id='header' className="w-full min-h-screen pt-16 px-2">
+      <div className="bg-midnight-green rounded-lg mb-8">
+        <div className="bg-caribbean-current text-tea-green rounded-t-lg p-3 tablet:p-4">
+          <ParallaxText baseVelocity={2} clamp={true}>{header.parallaxText}</ParallaxText>
+        </div>
 
-        {alert.show && <Alert {...alert} />}
-        
-        {/* Contact Form and Cards */}
-        <motion.div
-          variants={leftSlideVariants}
-          whileInView={leftSlideVariants.whileInView}
-          className="w-full tablet:w-1/2 px-4"
-        >
-
-          {/* Container for displaying contact cards */}
-          <div className="contact-cards">
-            {/* Card for email contact */}
-            <motion.a 
-              href={`mailto:${contact.email} `}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.5 }}
-              className="contact-card bg-chartreuse-color  border border-caribbean-current"
+        <div className="grid grid-cols-1 tablet:grid-cols-3 gap-4 mt-4 mx-4">
+          {/* First Column */}
+          <div className="tablet:col-span-1">
+            <motion.div
+              variants={textSlideVariants}
+              whileInView={textSlideVariants.whileInView}
+              className="flex flex-col gap-5 text-tea-green"
             >
-              <EnvelopeIcon className="w-10 h-10 mr-4 text-caribbean-current"/>
-              <p className="p-text font-semibold">{contact.email}</p>
-            </motion.a>
-
-            {/* Card for phone contact */}
-            <motion.a 
-              //href="tel:+1 (123) 456-7890" 
-              href={`tel:${contact.phone} `}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.5 }}
-              className="contact-card bg-white  border border-caribbean-current"
-            >
-              <PhoneIcon className="w-10 h-10 mr-4 text-caribbean-current"/>
-              <p className="p-text font-semibold">{contact.phone}</p>
-            </motion.a>
-          </div>
-
-          {/* Contact Form */}
-          <form
-            ref={formRef}
-            onSubmit={handleSubmit}
-            className='flex flex-col gap-4 mt-8'
-          >
-            {/* Name Input */}
-            <label htmlFor="name" className='label'>
-              <input
-                id="name"
-                type='text'
-                name='name'
-                className='input'
-                placeholder="John Doe"
-                required
-                value={form.name}
-                onChange={handleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-              />
-              <span 
-                className='contact-span'
+              <h4 className="flex space-x-2 text-lg font-normal">
+                <span>👋🏿</span>
+                <Typewriter
+                  options={{
+                    strings: header.salutations,
+                    autoStart: true,
+                    loop: true,
+                    delay: 70, // Time to complete each string
+                    pauseFor: 6000, // Optional pause after each string
+                    escapeHtml: false, // Allow HTML in strings
+                    cursor: '..',
+                  }}
+                />
+              </h4>
+              
+              <motion.div
+                variants={textChildrenVarients}
+                whileInView={window.innerWidth > 639 ? textChildrenVarients.whileInView : textChildrenVarients.whileInViewMobile }
+                transition={{ delay:1, duration: 1 }}
+                className="flex flex-col gap-5"
               >
-                Name
-              </span>
-            </label>
-
-            {/* Email Input */}
-            <label htmlFor="email" className='label'>
-              <input
-                id="email"
-                type='email'
-                name='email'
-                className='input'
-                placeholder='john.doe@example.com'
-                required
-                value={form.email}
-                onChange={handleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-              />
-              <span 
-                className='contact-span'
-              >
-                Email
-              </span>
-            </label>
-
-            {/* Message Textarea */}
-            <label htmlFor="message" className='label'>
-              <textarea
-                id="message"
-                name='message'
-                rows='4'
-                className='input'
-                placeholder='Write your thoughts here...'
-                required
-                value={form.message}
-                onChange={handleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-              />
-                <span 
-                  className='contact-span'
-                >
-                  Your Message
-                </span>
-            </label>
-
-            {/* Submit Button */}
-            <div className="w-full flex justify-center">
-              <motion.div 
-                initial={{ scale: 1 }}
-                whileTap={{ scale: 0.3 }}
-                className="w-fit"
-              >
-                <CustomBtn
-                  btnType='submit'
-                  classProps={`gap-4 px-8 py-2 ${loading ? 'animate-pulse' : ''}`}
-                  label={loading ? 'Sending...' : 'Submit'} 
-                  backgroundColor={"bg-chartreuse-color"} 
-                  borderColor={"border-1 border-midnight-green"} 
-                  textColor={"text-midnight-green"}
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                  disabled={loading}  // Disable the button during download
-                >
-                  <ArrowRightIcon 
-                    className={`w-[35px] h-[35px] text-chartreuse-color fill-midnight-green `}
-                  />
-                </CustomBtn>
+                <h1 className="text-6xl font-bold">
+                  Hi, I&apos;m <span className="text-chartreuse-color capitalize">Amelia Olufowobi</span>
+                </h1>
               </motion.div>
-            </div>
-          </form>
-        </motion.div>
 
-        {/* Profile Image and Animation */}
-        <motion.div
-          variants={window.innerWidth > 639 ? rightSlideVariants : leftSlideVariants}
-          whileInView="whileInView"
-          className="relative w-full tablet:w-auto h-auto"
-        >
-          <div className="bg-midnight-green rounded-2xl tablet:w-[350px] mx-4 tablet:mx-0">
-            {contact.imgUrl ? (
-              <img 
-                src={urlFor(contact.imgUrl)} 
-                alt="profile_bg"
-                className="object-contain w-full h-full"
+              <motion.div
+                variants={textChildrenVarients}
+                whileInView={window.innerWidth > 639 ? textChildrenVarients.whileInView : textChildrenVarients.whileInViewMobile }
+                transition={{ delay:1, duration: 1.4 }} 
+                className='flex flex-col gap-5'
+              >
+                <h2 className="flex space-x-2 text-2xl tablet:text-4xl font-bold">
+                  <span>a</span>
+                  <Typewriter
+                    options={{
+                      strings: header.professions,
+                      autoStart: true,
+                      loop: true,
+                      delay: 50, // Time to complete each string
+                      pauseFor: 1000, // Optional pause after each string
+                      escapeHtml: false, // Allow HTML in strings
+                    }}
+                  />
+                </h2>
+                <p className="text-base leading-6 tracking-wide">
+                  {header.remark}
+                </p>
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Second Column */}
+          <div className="tablet:col-span-1">
+            <motion.div
+              whileInView={{ y: [100, 0], opacity: [0, 1] }} // Animation effect for horizontal sliding from left and opacity change from transparent to full
+              transition={{ duration: 1.5 }}
+              className="flex justify-center items-center"
+            >
+              {header.imgurl ? (
+                <img 
+                  src={urlFor(header.imgurl)} 
+                  alt="profile_bg" 
+                  className="object-contain z-10 tablet:-mt-14 p-0 w-[350px] h-[350px] tablet:w-[450px] tablet:h-[450px]"
+                />
+              ) : (
+                "" // In the absence of a profile picture, leave the area blank. I can also place a temporal picture here.
+              )}
+            </motion.div>
+          </div>
+
+          {/* Third Column */}
+          <div className="tablet:col-span-1">
+            <motion.div 
+              variants={scaleVariants} // Animation variants for scale effect
+              whileInView={scaleVariants.whileInView}
+              className='flex tablet:flex-col justify-between items-center 
+              tablet:items-start tablet:space-y-12 pb-4 tablet:pb-0 -mt-2 tablet:-mt-0'
+            >
+              {/* First Circle */}
+              <motion.div
+                variants={hoverScaleVariants}
+                whileHover={hoverScaleVariants.hover}
+                //The z-10 is just to prevent the circle from being behind the profile image, so i can hover over it.
+                className="w-16 h-16 tablet:w-24 tablet:h-24 -mt-9 tablet:-mt-0 tablet:-ml-14 hearder-icon-circles z-10"
+              >
+                <img src={images.flutter} alt="Flutter" className="object-cover w-full h-full" />
+              </motion.div>
+
+              {/* Second Circle */}
+              <motion.div
+                variants={hoverScaleVariants}
+                whileHover={hoverScaleVariants.hover}
+                className="w-20 h-20 tablet:w-28 tablet:h-28 tablet:ml-10 hearder-icon-circles z-10"
+              >
+                <img src={images.redux} alt="Redux" className="object-cover w-full h-full" />
+              </motion.div>
+
+              {/* Third Circle */}
+              <motion.div 
+                variants={hoverScaleVariants}
+                whileHover={hoverScaleVariants.hover}
+                className="w-16 h-16 tablet:w-20 tablet:h-20 -mt-10 tablet:-mt-0 tablet:-ml-8 hearder-icon-circles z-10"
+              >
+                <img src={images.sass} alt="Sass" className="object-cover w-full h-full" />
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+
+        <div className="flex justify-center items-center mt-4">
+          <motion.div
+            variants={buttonVariants}
+            // Apply hover effect only when not downloading. I used rest when downloading or btn wont return to no rotation.
+            whileHover={!downloading ? buttonVariants.hover : 'rest'}
+            initial="rest" // Optional: Set the initial state
+            className='-mt-4 tablet:-mt-14 z-20'
+          >
+            <CustomBtn
+              classProps={`${downloading ? 'rotate-12' : ''} px-8 py-2`}
+              label={downloading ? 'Downloading...' : 'Download CV'}
+              btnType="button"
+              onBtnClick={handleDownloadClick}
+              disabled={downloading}  // Disable the button during download
+            >
+              <ArrowDownIcon 
+                className={`w-[50px] h-[50px] text-chartreuse-color fill-midnight-green 
+                ${!downloading ? '-rotate-45' : 'rotate-90 text-[#81926D] fill-midnight-green animate-bounce'}`}
               />
-            ) : (
-              "" // In the absence of a profile picture, leave the area blank. I can also place a temporal picture here.
-            )}
-          </div>
-          <div className="absolute -bottom-12 right-0 left-72 hidden tablet:flex justify-end items-end w-[200px] h-[150px]">
-            {currentImage === 0 && <Lottie animationData={deliveryVan} autoplay={false} />}
-            {currentImage === 1 && <Lottie animationData={deliveryVan} autoplay={true}/>}
-            {currentImage === 2 && <Lottie animationData={deliverySent} autoplay={true} className=" flex justify-start items-end pb-8"/>}
-          </div>
-        </motion.div>
+            </CustomBtn>
+
+          </motion.div>
+        </div>
       </div>
     </section>
-  )
-}, 'contact', 'bg-tea-green'));
+  );
+};
 
-export default Contact
+//export default AppWrap(Header, 'header');
+export default Header;
