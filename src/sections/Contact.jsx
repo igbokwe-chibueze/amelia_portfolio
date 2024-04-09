@@ -262,9 +262,9 @@ const Contact = MotionWrap(AppWrap(() => {
         <motion.div
           variants={window.innerWidth > 639 ? rightSlideVariants : leftSlideVariants}
           whileInView="whileInView"
-          className="relative w-full tablet:w-auto h-auto"
+          className=" flex flex-col items-center w-full tablet:w-auto h-auto px-4 tablet:px-0"
         >
-          <div className="bg-midnight-green rounded-2xl tablet:w-[350px] mx-4 tablet:mx-0">
+          <div className="bg-midnight-green rounded-2xl w-full tablet:w-[350px] h-64 mx-4 tablet:mx-0">
             {contact.imgUrl ? (
               <img 
                 src={urlFor(contact.imgUrl)} 
@@ -275,10 +275,10 @@ const Contact = MotionWrap(AppWrap(() => {
               "" // In the absence of a profile picture, leave the area blank. I can also place a temporal picture here.
             )}
           </div>
-          <div className="absolute -bottom-12 right-0 left-72 hidden tablet:flex justify-end items-end w-[200px] h-[150px]">
-            {currentImage === 0 && <Lottie animationData={deliveryVan} autoplay={false} />}
+          <div className="hidden tablet:flex w-full h-[150px]">
+            {currentImage === 0 && <Lottie animationData={deliveryVan} autoplay={false}/>}
             {currentImage === 1 && <Lottie animationData={deliveryVan} autoplay={true}/>}
-            {currentImage === 2 && <Lottie animationData={deliverySent} autoplay={true} className=" flex justify-start items-end pb-8"/>}
+            {currentImage === 2 && <Lottie animationData={deliverySent} autoplay={true}/>}
           </div>
         </motion.div>
       </div>
