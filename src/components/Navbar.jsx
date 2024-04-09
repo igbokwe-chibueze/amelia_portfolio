@@ -39,7 +39,7 @@ const linksVariants = {
     }
   }
 
-const offsetValue = -75 //I put this here because i was fine tunning the offset value alot to get the perfect offset for the both Links group (First/Second half).
+const offsetValue = -90 //I put this here because i was fine tunning the offset value alot to get the perfect offset for the both Links group (First/Second half).
 
 const Navbar = () => {
     // I'm excluding all code related to scrolling checks because I've decided not to alter the Navbar color as the page scrolls anymore.
@@ -62,7 +62,8 @@ const Navbar = () => {
     //     window.removeEventListener('scroll', handleScroll);
     //     };
     // }, []);
-
+    //  *******************************************
+    
     // Split the navLinks into two halves
     const halfIndex = Math.ceil(navLinks.length / 2);
     const firstHalf = navLinks.slice(0, halfIndex);

@@ -1,7 +1,7 @@
 // Importing necessary components and features from the React and React Router libraries.
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 // Importing specific components from the "components" and "sections" directories.
-import { Navbar, BackToTop, FollowPointer } from "./components"
+import { Navbar, BackToTop, FollowPointer, AnimatedRoutes, PagesNavbar } from "./components"
 import { Services, Blogs, Contact, GraphicsDesigns, Header, Projects, Testimonials, Skills } from "./sections"
 
 
@@ -21,7 +21,7 @@ const App = () => {
             element={
               <div>
                 <Navbar/>
-                <BackToTop/>
+                <BackToTop usage={"section"}/>
                 <section>
                   <Header/>
                   <Services/>
@@ -40,9 +40,9 @@ const App = () => {
             path='/*'
             element={
               <div>
-                {/* <Home />
+                <BackToTop usage={"page"}/>
+                <PagesNavbar/>
                 <AnimatedRoutes/>
-                <Footer /> */}
               </div>
             }
           />

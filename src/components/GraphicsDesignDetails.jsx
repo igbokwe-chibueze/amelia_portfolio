@@ -3,6 +3,7 @@ import { FetchData, SkeletonGraphicsDesignDetails, TransitionEffect } from "../c
 import { motion } from "framer-motion";
 import { urlFor } from "../client";
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const scaleVariants = {
     whileInView: {
@@ -18,9 +19,16 @@ const scaleVariants = {
 };
 
 const AllGraphicsDesigns = () => {
-    const { id } = useParams();
-    const { error, isPending, data: graphicsDesigns } = FetchData(`*[_type == "graphicsDesigns" && _id == "${id}"]`);
+    const { id, title } = useParams();
 
+    // Extract title from the URL
+    const decodedTitle = decodeURIComponent(title);
+
+    const { error, isPending, data: graphicsDesigns } = FetchData(`*[ _type == "graphicsDesigns" && _id == "${id}" && title == "${decodedTitle}" ]`);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <div className='w-full min-h-screen px-4 tablet:px-20 pb-8'>
@@ -29,9 +37,8 @@ const AllGraphicsDesigns = () => {
             </h2>
 
             <div className="flex flex-col justify-center items-center tablet:px-16">
-                <SkeletonGraphicsDesignDetails count={1}/>
                 {error && <div>{error}</div>}
-                {isPending && <p>Loading......</p>}
+                {isPending && <SkeletonGraphicsDesignDetails count={1}/>}
                 {graphicsDesigns && (
                     <motion.div
                         variants={scaleVariants}
@@ -52,7 +59,7 @@ const AllGraphicsDesigns = () => {
                                 </div>
                                 {images && images.length > 0 && (
                                     <div className="space-y-4 mt-4 tablet:mt-12 overflow-hidden">
-                                        <div className="flex justify-center items-center tablet:grid tablet:grid-cols-2 tablet:gap-4">
+                                        <div className="flex flex-col justify-center items-center space-y-4 tablet:space-y-0 tablet:grid tablet:grid-cols-2 tablet:gap-4">
                                             {images.map((image, index) => (
                                                 <img
                                                     key={index}

@@ -27,10 +27,13 @@ const hoverScaleVariants = {
   },
 };
 
-const BlogsCard = ({favoriteBlogs}) => {
+const BlogsCard = ({blogs, type}) => {
+
+  const classes = `relative ${type}`;
+
   return (
     <>
-      {favoriteBlogs.map((blog) => (
+      {blogs.map((blog) => (
         <motion.div
           key={blog.title}
           variants={scaleVariants} // Animation variants for scale effect
@@ -40,7 +43,7 @@ const BlogsCard = ({favoriteBlogs}) => {
           <motion.div
             variants={hoverScaleVariants}
             whileHover={hoverScaleVariants.hover}
-            className="relative blog-card"
+            className={classes}
           >
             {/* Display the profile image */}
             <img
@@ -60,7 +63,7 @@ const BlogsCard = ({favoriteBlogs}) => {
             <p className="p-text mt-2">{blog.description}</p>
 
             <div className="blog-card-badge">
-              <p className="">{blog.readTime} mins read</p>
+              <p>{blog.readTime} mins read</p>
             </div>
 
             <div className="border-t-2 border-gray-100 w-full my-2"/>

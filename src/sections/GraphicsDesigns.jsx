@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { CustomBtn, GraphicsDesignCard, ParallaxText } from "../components";
+import { GraphicsDesignCard, ParallaxText } from "../components";
 import { AppWrap, MotionWrap } from "../wrapper";
 import { client } from '../client';
 import { motion } from "framer-motion";
 import { ArrowRightIcon } from "../constants/icons";
+import { Link } from "react-router-dom";
 
 const buttonVariants = {
   rest: {
@@ -56,15 +57,17 @@ const GraphicsDesigns = MotionWrap(AppWrap(() => {
             initial="rest" // Optional: Set the initial state
             className='-mt-4 tablet:-mt-4'
           >
-            <CustomBtn
-              classProps={"px-8 py-2"}
-              btnType="button"
-              onBtnClick={''}
+            <Link
+              to={'graphicsDesigns'}
+              className='z-20 flex justify-center items-center border gap-4 group px-8 py-2
+              text-lg tablet:text-2xl font-bold leading-none rounded-full 
+              bg-chartreuse-color hover:bg-[#6BC800] text-midnight-green border-midnight-green'
             >
+              <p>See More</p>
               <ArrowRightIcon
-                className="w-[50px] h-[50px] text-chartreuse-color fill-midnight-green"
+                className="w-[50px] h-[30px] text-chartreuse-color fill-midnight-green"
               />
-            </CustomBtn>
+            </Link>
 
           </motion.div>
         </div>

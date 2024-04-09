@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react"
 import { Link } from 'react-scroll';
 import ProgressCircle from "./ProgressCircle";
@@ -24,14 +23,16 @@ const svgPop = {
   }
 }
 
-const BackToTop = ({usage}) => {
+
+
+const BackToTop = () => {
   const [scrolling, setScrolling] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Check if the user has scrolled beyond a certain threshold (e.g., 70 pixels)
-      const isScrolling = window.scrollY > 70;
-      setScrolling(isScrolling);
+    // Check if the user has scrolled beyond a certain threshold (e.g., 70 pixels)
+    const isScrolling = window.scrollY > 70;
+    setScrolling(isScrolling);
     };
 
     // Attach the scroll event listener
@@ -39,16 +40,9 @@ const BackToTop = ({usage}) => {
 
     // Clean up the event listener on component unmount
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+    window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
 
   return (
     <>
@@ -63,23 +57,16 @@ const BackToTop = ({usage}) => {
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.7 }}
             >
-              {/* If usage is equals to section then render Link, else render button. */}
-              {usage === 'section' ? (
-                <Link
-                  to={'header'} // Scroll to header section
-                  smooth={true}
-                  duration={500}
-                  offset={0} // Adjust this offset based on your layout
-                  spy={true}
-                  className="cursor-pointer"
-                >
-                  <ProgressCircle/>
-                </Link>
-              ) : (
-                <button onClick={scrollToTop}>
-                  <ProgressCircle/>
-                </button>
-              )}
+              <Link
+                to={'header'} // Scroll to header section
+                smooth={true}
+                duration={500}
+                offset={0} // Adjust this offset based on your layout
+                spy={true}
+                className="cursor-pointer"
+              >
+                <ProgressCircle/>
+              </Link>
             </motion.div>
           </AnimatePresence>
         </div>

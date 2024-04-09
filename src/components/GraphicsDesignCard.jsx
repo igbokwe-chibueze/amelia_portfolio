@@ -6,13 +6,14 @@ import { ChevronLeftIcon, ChevronRightIcon } from '../constants/icons';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from 'react-router-dom';
 
 
 const PreviousBtn = (props) => {
     const { className, onClick } = props;
     return (
         <div className={className} onClick={onClick}>
-        <ChevronLeftIcon className={"w-[50px] h-[50px]"}/>
+            <ChevronLeftIcon className={"w-[50px] h-[50px]"}/>
         </div>
     );
 };
@@ -61,35 +62,16 @@ const GraphicsDesignCard = ({ graphicsDesigns }) => {
                         <div className="flex justify-center items-center p-2 bg-white rounded-lg shadow-md h-auto mx-2">
                             {/* Display the image of the current graphics design */}
                             {graphics.mainImage && (
-
+                                <Link
+                                    to={`/graphicsDesignDetails/${graphics._id}/${encodeURIComponent(graphics.title)}`}
+                                >
                                     <img
                                         src={urlFor(graphics.mainImage)}
                                         alt={graphics.title}
                                         className="w-[450px] h-[350px] object-cover"
-                                        //className="w-fit h-[350px] object-cover"
                                     />
+                                </Link>
                             )}
-                            
-                            {/*This would be useful when displaying the design dedicated page*/}
-                            {/* <p className='mr-2'>{graphics.title }</p>
-                            
-                            {graphics.images && (
-                                <div>
-                                    {graphics.images.length}
-
-                                    {graphics.images.map((item, index) => (
-                                        <div
-                                            key={index}
-                                            className='project-card-tag-item'
-                                        >
-                                            {item && (
-                                                <img src={urlFor(item.asset)} alt="image" />
-                                            )}
-                                        </div>
-                                    ))}
-                                </div>
-                            )} */}
-                            
                         </div>
                     </div>
                 ))}

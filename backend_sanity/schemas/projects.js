@@ -17,11 +17,13 @@ export default {
     {
       name: 'projectLink',
       title: 'Project Link',
+      description: 'Link to the project design file (E.g Figma, Behance).',
       type: 'url',
     },
     {
       name: 'liveLink',
       title: 'Live Link',
+      description: 'Link to the live project. If not live leave blank.',
       type: 'url',
     },
     {
@@ -32,6 +34,7 @@ export default {
     {
       name: 'imgUrl',
       title: 'ImageUrl',
+      description: 'Link to a case study for the project. If no case study exist, leave blank.',
       type: 'image',
       options: {
         hotspot: true,
