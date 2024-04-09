@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { AppWrap, MotionWrap } from "../wrapper";
-import { useEffect } from "react";
-import { client } from "../client";
-import { BlogsCard, CustomBtn } from "../components";
+import { BlogsCard, FetchData, SkeletonBlogs } from "../components";
 import { ArrowRightIcon } from "../constants/icons";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const scaleVariants = {
   whileInView: {
@@ -21,24 +19,7 @@ const scaleVariants = {
 
 const Blogs = MotionWrap(AppWrap(() => {
 
-  const [favoriteBlogs, setFavoriteBlogs] = useState([]);
-  const [allBlogs, setAllBlogs] = useState([]);
-
-  // Use the 'useEffect' hook to fetch data from the backend on component mount
-  useEffect(() => {
-    const query = '*[_type == "blogs"]'; // Define a query to fetch 'all blogs' data from the backend
-    const favouriteQuery = '*[_type == "blogs" && favourite == true]'; // Define a query to fetch 'favourite blogs' data from the backend
-
-    // Fetch data using the 'client' and update the 'services' state with the fetched data
-    client.fetch(query).then((data) => {
-      setAllBlogs(data);
-    });
-    // Fetch data using the 'client' and update the 'services' state with the fetched data
-    client.fetch(favouriteQuery).then((data) => {
-      setFavoriteBlogs(data);
-    });
-  }, []);
-
+  const { error, isPending, data: blogs } = FetchData('*[_type == "blogs" && favourite == true]')
 
   return (
     <section className='w-full min-h-screen'>
@@ -53,20 +34,28 @@ const Blogs = MotionWrap(AppWrap(() => {
         viewport={window.innerWidth > 639 ? { once: true } : { once: true }}
         className="mt-4 flex justify-center items-center w-full"
       >
-        <CustomBtn
-          classProps={"px-8 py-2"}
-          btnType="button"
-          onBtnClick={''}
-        >
-          <ArrowRightIcon
-            className="w-[50px] h-[30px] text-chartreuse-color fill-midnight-green"
-          />
-        </CustomBtn>
+        <Link
+            to={'blogs'}
+            className='z-20 flex justify-center items-center border gap-4 group px-8 py-2
+            text-lg tablet:text-2xl font-bold leading-none rounded-full 
+            bg-chartreuse-color hover:bg-[#6BC800] text-midnight-green border-midnight-green'
+          >
+            <p>See More</p>
+            <ArrowRightIcon
+              className="w-[50px] h-[30px] text-chartreuse-color fill-midnight-green"
+            />
+          </Link>
       </motion.div>
 
-      {/* Render a list of the first four services using 'map' function */}
+      {/* Render the blogs */}
       <div className="flex justify-center tablet:justify-start items-start flex-wrap mt-4">
-        <BlogsCard favoriteBlogs={favoriteBlogs} />
+        { error && <div>{ error }</div> }
+        { isPending && (
+          <SkeletonBlogs count={6} type={"skeleton-wrapper-allblogs"}/>
+        )}
+        {blogs && 
+          (<BlogsCard blogs={blogs} type={"blog-card"} />)
+        }
       </div>
 
     </section>

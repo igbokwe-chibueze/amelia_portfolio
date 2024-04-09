@@ -18,3 +18,10 @@ export const allNavLinks = [
     { href: 'blogs', text: 'Blogs' },
     { href: 'contact', text: 'Contact' },
 ];
+
+export const pages = [
+    { to: 'projects', text: 'Projects' },
+    { to: 'graphicsDesigns', text: 'GraphicsDesigns' },
+    { to: 'blogs', text: 'Blogs' },
+    { to: 'contact', text: 'Contact' }
+  ];
