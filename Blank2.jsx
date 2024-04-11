@@ -124,8 +124,8 @@ const Header = () => {
   return (
     <section id='header' className="w-full min-h-screen pt-16 px-2">
       {error && <div>{error}</div>}
-      {isPending && <p>Loading......</p>}
-      {header && (
+      {isPending && (<p>Loading......</p>)}
+      {!isPending && header && (
         <div className="bg-midnight-green rounded-lg mb-8">
           <div className="bg-caribbean-current text-tea-green rounded-t-lg p-3 tablet:p-4">
             <ParallaxText baseVelocity={2} clamp={true}>{header.parallaxText}</ParallaxText>
@@ -263,10 +263,9 @@ const Header = () => {
           </div>
         </div>
       )}
-      
+
     </section>
   );
 };
 
-//export default AppWrap(Header, 'header');
 export default Header;

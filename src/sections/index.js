@@ -6,7 +6,7 @@ import Header from "./Header"
 import Projects from "./Projects"
 import Skills from "./Skills"
 import Testimonials from "./Testimonials"
-
+import Header2 from "./Header2"
 
 export {
     Services,
@@ -17,4 +17,5 @@ export {
     Projects,
     Testimonials,
     Skills,
+    Header2
 }

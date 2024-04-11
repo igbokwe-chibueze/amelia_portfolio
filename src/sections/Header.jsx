@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CustomBtn, FetchData, ParallaxText } from '../components';
+import { Counter, CustomBtn, FetchData, ParallaxText } from '../components';
 import { ArrowDownIcon } from '../constants/icons';
 import { motion } from 'framer-motion';
 import Typewriter from 'typewriter-effect';
@@ -43,16 +43,24 @@ const textChildrenVarients = {
 
 // Variants for the scale animation
 const scaleVariants = {
-  whileInView: {
-    // Animation effect for scale and opacity from 0 to 1
-    scale: [0, 1],
-    opacity: [0, 1],
-    // Animation transition properties
-    transition: {
-      duration: 1.5, // Animation duration in seconds
-      ease: 'easeInOut', // Animation easing function
-    },
+  hidden: { 
+    opacity: 0, 
+    scale: 0 
   },
+  show: { 
+    opacity: 1, 
+    scale: 1, 
+    transition: { 
+      duration: 0.2,
+      staggerChildren: 0.5 // Duration between each child showing up.
+    } 
+  },
+};
+
+
+const scaleChildrenVariants = {
+  hidden: { opacity: 0, scale: 0 },
+  show: { opacity: 1, scale: 1, transition: { duration: 1 } },
 };
 
 const hoverScaleVariants = {
@@ -65,13 +73,6 @@ const hoverScaleVariants = {
       duration: 0.3,
     },
   },
-};
-
-const iconIndex = {
-  0 : 'w-16 h-16 tablet:w-24 tablet:h-24 -mt-9 tablet:-mt-0 tablet:-ml-14',
-  1 : 'w-20 h-20 tablet:w-28 tablet:h-28 tablet:ml-10',
-  2 : 'w-16 h-16 tablet:w-20 tablet:h-20 -mt-10 tablet:-mt-0 tablet:-ml-8',
-  3 : 'w-16 h-16 tablet:w-20 tablet:h-20 -mt-10 tablet:-mt-0 tablet:-ml-8',
 };
 
 const Header = () => {
@@ -124,14 +125,14 @@ const Header = () => {
   return (
     <section id='header' className="w-full min-h-screen pt-16 px-2">
       {error && <div>{error}</div>}
-      {isPending && (<p>Loading......</p>)}
+      {isPending && ("")}
       {!isPending && header && (
         <div className="bg-midnight-green rounded-lg mb-8">
           <div className="bg-caribbean-current text-tea-green rounded-t-lg p-3 tablet:p-4">
             <ParallaxText baseVelocity={2} clamp={true}>{header.parallaxText}</ParallaxText>
           </div>
 
-          <div className="grid grid-cols-1 tablet:grid-cols-3 gap-4 mt-4 mx-4">
+          <div className="grid grid-cols-1 tablet:grid-cols-3 gap-1 tablet:gap-4 mt-4 mx-4">
             {/* First Column */}
             <div className="tablet:col-span-1">
               <motion.div
@@ -211,34 +212,65 @@ const Header = () => {
             </div>
 
             {/* Third Column */}
-            <div className="tablet:col-span-1">
+            <div className='flex flex-col justify-start items-center space-y-2 tablet:space-y-8 -mt-4 tablet:mt-0'>
               <motion.div 
                 variants={scaleVariants} // Animation variants for scale effect
-                whileInView={scaleVariants.whileInView}
-                className='flex tablet:flex-col justify-between items-center 
-                tablet:items-start tablet:space-y-12 pb-4 tablet:pb-0 -mt-2 tablet:-mt-0'
+                initial="hidden"
+                whileInView="show"
+                className='inline-grid grid-cols-4 tablet:grid-cols-2 gap-2 tablet:gap-4 z-20'
               >
-                {header.bestTools && header.bestTools.slice(0, 3).map((bestTool, index) => (
+                {header.bestTools && header.bestTools.slice(0, 4).map((bestTool, index) => (
                   <motion.div
-                      key={index}
-                      variants={hoverScaleVariants}
-                      whileHover={hoverScaleVariants.hover}
-                      className={`hearder-icon-circles header${iconIndex[index]}`}
+                    key={index}
+                    variants={scaleChildrenVariants}
                   >
+                    <motion.div
+                      whileHover={hoverScaleVariants.hover}
+                      className='z-10 rounded-xl p-3 bg-chartreuse-color tablet:w-20 tablet:h-20
+                      border-2 border-tea-green shadow-md shadow-tea-green/40'
+                    >
                       <img
-                          key={index}
-                          src={urlFor(bestTool).url()}
-                          alt={`Image ${index}`}
-                          className="object-cover rounded-2xl w-full h-full"
+                        key={index}
+                        src={urlFor(bestTool).url()}
+                        alt={`Image ${index}`}
+                        className="object-cover w-full h-full"
                       />
+                    </motion.div>
                   </motion.div>
                 ))}
-
               </motion.div>
+
+              <div className="flex flex-row justify-start items-center tablet:flex-col tablet:space-y-4">
+
+                <div className='text-tea-green text-center tablet:text-left'>
+                  <motion.h2 
+                      whileInView={{ y: [50, 0], opacity: [0, 1] }}
+                      transition={{ duration: 1.5 }}
+                      viewport={{ once: false }}
+                      className="text-2xl tablet:text-4xl font-bold"
+                    >
+                    <Counter initialValue={0} endValue={2} duration={600}/><span className='text-chartreuse-color'>+</span>
+                  </motion.h2>
+                  <p>years of experience</p>
+                </div>
+
+                <div className='text-tea-green text-center tablet:text-left'>
+                  <motion.h2 
+                    whileInView={{ y: [50, 0], opacity: [0, 1] }}
+                    transition={{ duration: 1.5 }}
+                    viewport={{ once: false }}
+                    className="text-2xl tablet:text-4xl font-bold"
+                  >
+                    <Counter initialValue={0} endValue={10} duration={1000}/><span className='text-chartreuse-color'>+</span>
+                  </motion.h2>
+                  <p>projects completed</p>
+                </div>
+
+              </div>
             </div>
           </div>
 
-          <div className="flex justify-center items-center mt-4">
+          <div className="flex justify-center items-center mt-10 tablet:mt-4">
             <motion.div
               variants={buttonVariants}
               // Apply hover effect only when not downloading. I used rest when downloading or btn wont return to no rotation.
