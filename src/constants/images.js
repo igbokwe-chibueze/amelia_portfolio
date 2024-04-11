@@ -27,6 +27,7 @@ import profile from '../assets/profile.png';
 import circle from '../assets/circle.svg';
 import logo from '../assets/logo.png';
 import ameliaLogo from '../assets/amelia-logo.png'
+import ameliaLogo2 from '../assets/amelia-logo2.png'
 
 import adidas from '../assets/adidas.png';
 import amazon from '../assets/amazon.png';
@@ -65,6 +66,7 @@ const images = {
   circle,
   logo,
   ameliaLogo,
+  ameliaLogo2,
   adidas,
   amazon,
   asus,

@@ -58,7 +58,7 @@ const PagesNavbar = () => {
                     exact={true}
                 >
                     <img
-                        src={images.ameliaLogo}
+                        src={images.ameliaLogo2}
                         alt='logo'
                         width={120}
                         height={60}
@@ -112,7 +112,7 @@ const PagesNavbar = () => {
                     >
                         <motion.img
                             whileHover={{scale: 1.1}}
-                            src={images.ameliaLogo}
+                            src={images.ameliaLogo2}
                             alt='logo'
                             width={120}
                             height={60}
