@@ -57,8 +57,8 @@ const GraphicsDesignCard = ({ graphicsDesigns }) => {
             className="max-w-64 tablet:max-w-4xl graphics-design"
         >
             <Slider {...settings}>
-                {graphicsDesigns.map((graphics) => (
-                    <div key={graphics.index}>
+                {graphicsDesigns.map((graphics, index) => (
+                    <div key={index}>
                         <div className="flex justify-center items-center p-2 bg-white rounded-lg shadow-md h-auto mx-2">
                             {/* Display the image of the current graphics design */}
                             {graphics.mainImage && (
