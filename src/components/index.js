@@ -29,6 +29,7 @@ import AllGraphicsDesignCard from "./AllGraphicsDesignCard";
 import GraphicsDesignDetails from "./GraphicsDesignDetails";
 import SkeletonGraphicsDesign from "./SkeletonGraphicsDesign";
 import SkeletonGraphicsDesignDetails from "./SkeletonGraphicsDesignDetails";
+import Counter from "./Counter";
 
 
 export {
@@ -62,5 +63,6 @@ export {
     AllGraphicsDesignCard,
     GraphicsDesignDetails,
     SkeletonGraphicsDesign,
-    SkeletonGraphicsDesignDetails
+    SkeletonGraphicsDesignDetails,
+    Counter
 }

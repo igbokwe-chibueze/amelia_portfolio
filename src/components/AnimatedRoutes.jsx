@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { AllBlogs, AllGraphicsDesigns, AllProjects } from "../pages";
+import { AllBlogs, AllGraphicsDesigns, AllProjects, NotFoundPage } from "../pages";
 import GraphicsDesignDetails from "./GraphicsDesignDetails";
 import { Contact } from "../sections";
 
@@ -16,6 +16,8 @@ const AnimatedRoutes = () => {
         <Route path='/graphicsDesignDetails/:id/:title' element={<GraphicsDesignDetails />} />
         
         <Route path='/contact' element={<Contact/>} />
+
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </AnimatePresence>
   )

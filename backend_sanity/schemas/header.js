@@ -34,6 +34,22 @@ export default {
             type:'string'
         },
         {
+            name: 'bestTools',
+            title: 'BestTools',
+            type:'array',
+            description: 'Place images of your best tools here (Limit it to 4 for best visuals)',
+            of: [
+              {
+                name:'imgUrl',
+                title:'ImgUrl',
+                type:'image',
+                options: {
+                    hotspot: true,
+                },
+              },
+            ]
+        },
+        {
             title: 'AmeliaResume',
             name: 'ameliaResume',
             type: 'file',

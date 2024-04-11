@@ -10,6 +10,26 @@
   }
 }
 
+/* Use this if you dont want to use the animation pulse effect that tailwind provides
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(to right, #f0f0f0 4%, #e0e0e0 25%, #f0f0f0 36%);
+  background-size: 1000px 100%;
+  animation: shimmer 1.5s infinite linear;
+} 
+
+*/
+
+
 @layer utilities {
   .truncate-overflow {
     display: -webkit-box;
@@ -102,8 +122,9 @@
 
 
   /* Header Page */
+  /* The z-10 is just to prevent the circle from being behind the profile image, so i can hover over it. */
   .hearder-icon-circles {
-    @apply rounded-full p-3 bg-chartreuse-color border-4 border-tea-green shadow-md shadow-tea-green/40
+    @apply z-10 rounded-full p-3 bg-chartreuse-color border-4 border-tea-green shadow-md shadow-tea-green/40
   }
   /*** end header page ***/
 
