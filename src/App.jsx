@@ -2,7 +2,7 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 // Importing specific components from the "components" and "sections" directories.
 import { Navbar, BackToTop, FollowPointer, AnimatedRoutes, PagesNavbar } from "./components"
-import { Services, Blogs, Contact, GraphicsDesigns, Header, Projects, Testimonials, Skills, Header2 } from "./sections"
+import { Services, Blogs, Contact, GraphicsDesigns, Header, Projects, Testimonials, Skills } from "./sections"
 
 
 
