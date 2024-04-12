@@ -176,7 +176,7 @@ const Menu = () => {
                 <CustomBtn
                   classProps={'flex-row-reverse px-1 py-1 gap-1 rounded-lg hover:bg-blue-700 hover:px-2'}
                   label="Twitter"
-                  showLabelOnHover="true"
+                  showLabelOnHover={true}
                   backgroundColor={"bg-blue-700"} 
                   borderColor={"border-gray-500"} 
                   textColor={"text-white"}
@@ -195,7 +195,7 @@ const Menu = () => {
                 <CustomBtn
                   classProps={'flex-row-reverse px-1 py-1 gap-1 rounded-lg hover:bg-rose-700 hover:px-2'}
                   label="Instagram"
-                  showLabelOnHover="true"
+                  showLabelOnHover={true}
                   backgroundColor={"bg-rose-700"} 
                   borderColor={"border-gray-500"} 
                   textColor={"text-white"}
@@ -214,7 +214,7 @@ const Menu = () => {
                 <CustomBtn
                   classProps={'flex-row-reverse px-1 py-1 gap-1 rounded-lg hover:bg-blue-700 hover:px-2'}
                   label="Twitter"
-                  showLabelOnHover="true"
+                  showLabelOnHover={true}
                   backgroundColor={"bg-blue-700"} 
                   borderColor={"border-gray-500"} 
                   textColor={"text-white"}
